@@ -4,13 +4,8 @@ public class MyFirstProgram {
 	public static void main(String[] args) {
 		System.out.println("Hello, Im Luntik!");
 
-		Point p1=new Point();
-		p1.x=2;
-		p1.y=2;
-
-		Point p2=new Point();
-		p1.x=4;
-		p2.y=4;
+		Point p1=new Point(2,2);
+		Point p2=new Point(4,4);
 
 		System.out.println(distance(p1,p2));
 	}
