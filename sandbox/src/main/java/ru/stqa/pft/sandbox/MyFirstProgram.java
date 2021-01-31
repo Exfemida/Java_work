@@ -7,7 +7,7 @@ public class MyFirstProgram {
 
 
 		System.out.println("Расстояние между точками с координатами: ");
-		System.out.println("x="+point1.x+" ,y="+point2.y);
+		System.out.println("x="+point1.x+" ,y="+point1.y);
 		System.out.println("x="+point2.x+" ,y="+point2.y);
 		System.out.println("составляет "+point1.distance(point2));
 	}
