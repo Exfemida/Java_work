@@ -22,6 +22,7 @@ public class ApplicationManager {
     login("admin", "secret");
   }
 
+
   public void login(String username, String password) {
     wd.findElement(By.name("user")).clear();
     wd.findElement(By.name("user")).sendKeys(username);
