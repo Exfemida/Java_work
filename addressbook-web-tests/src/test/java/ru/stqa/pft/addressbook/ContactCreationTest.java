@@ -29,12 +29,12 @@ public class ContactCreationTest {
   @Test
   public void testCreateNewContact() throws Exception {
     gotoNewContactPage();
-    fillContactForm(new contacts("Maria", "Sergeevna", "Ivanova", "Mashka", "do not know", "Rosneft", "Moskwa, 6", "2222222", "3333333", "4444444", "5555555", "email_1", "email_2", "email_3", "mashka.ru", "8", "May", "1982", "12", "September", "2004", "test1", "Kiev", "34", "kak dela?"));
+    fillContactForm(new Contacts("Maria", "Sergeevna", "Ivanova", "Mashka", "do not know", "Rosneft", "Moskwa, 6", "2222222", "3333333", "4444444", "5555555", "email_1", "email_2", "email_3", "mashka.ru", "8", "May", "1982", "12", "September", "2004", "test1", "Kiev", "34", "kak dela?"));
     submitContactCreation();
     gotoNewContactPage();
   }
 
-  private void fillContactForm(contacts contacts) {
+  private void fillContactForm(Contacts contacts) {
     wd.findElement(By.name("firstname")).click();
     wd.findElement(By.name("firstname")).clear();
     wd.findElement(By.name("firstname")).sendKeys(contacts.getFirstname());
