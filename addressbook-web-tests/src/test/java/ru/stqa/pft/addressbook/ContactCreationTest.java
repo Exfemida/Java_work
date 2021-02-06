@@ -21,22 +21,14 @@ public class ContactCreationTest {
     wd = new ChromeDriver();
     wd.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
     wd.get("http://localhost/addressbook/edit.php");
-    login("admin", "secret");
+    Authorization user=new Authorization(wd,"admin", "secret");
+    user.login();
   }
 
-  private void login(String username, String password) {
-    wd.findElement(By.name("user")).clear();
-    wd.findElement(By.name("user")).sendKeys(username);
-    wd.findElement(By.name("pass")).click();
-    wd.findElement(By.name("pass")).clear();
-    wd.findElement(By.name("pass")).sendKeys(password);
-    wd.findElement(By.xpath("//input[@value='Login']")).click();
-  }
 
   @Test
   public void testCreateNewContact() throws Exception {
-    wd.get("http://localhost/addressbook/edit.php");
-    wd.findElement(By.linkText("add new")).click();
+    gotoNewContactPage();
     wd.findElement(By.name("firstname")).click();
     wd.findElement(By.name("firstname")).clear();
     wd.findElement(By.name("firstname")).sendKeys("Maria");
@@ -49,9 +41,9 @@ public class ContactCreationTest {
     wd.findElement(By.name("nickname")).click();
     wd.findElement(By.name("nickname")).clear();
     wd.findElement(By.name("nickname")).sendKeys("Mashka");
-  //  wd.findElement(By.name("photo")).click();
-  //  wd.findElement(By.name("photo")).click();
-    wd.findElement(By.name("title")).click();
+    //wd.findElement(By.name("photo")).click();
+    //wd.findElement(By.name("photo")).clear();
+    //wd.findElement(By.name("photo")).sendKeys("C:\\Users\\Vorobushek\\Documents\\vel\\foto.jpg");
     wd.findElement(By.name("title")).click();
     wd.findElement(By.name("title")).clear();
     wd.findElement(By.name("title")).sendKeys("do not know");
@@ -116,6 +108,10 @@ public class ContactCreationTest {
     wd.findElement(By.name("notes")).clear();
     wd.findElement(By.name("notes")).sendKeys("kak dela?");
     wd.findElement(By.xpath("(//input[@name='submit'])[2]")).click();
+    gotoNewContactPage();
+  }
+
+  private void gotoNewContactPage() {
     wd.findElement(By.linkText("add new")).click();
   }
 
