@@ -1,6 +1,6 @@
 package ru.stqa.pft.addressbook;
 
-public class contacts {
+public class Contacts {
   private final String firstname;
   private final String middlename;
   private final String lastname;
@@ -27,7 +27,7 @@ public class contacts {
   private final String phone2;
   private final String notes;
 
-  public contacts(String firstname, String middlename, String lastname, String nickname, String title, String company, String address, String home, String mobile, String work, String fax, String email, String email2, String email3, String homepage, String bday, String bmonth, String byear, String aday, String amonth, String ayear, String newGroup, String address2, String phone2, String notes) {
+  public Contacts(String firstname, String middlename, String lastname, String nickname, String title, String company, String address, String home, String mobile, String work, String fax, String email, String email2, String email3, String homepage, String bday, String bmonth, String byear, String aday, String amonth, String ayear, String newGroup, String address2, String phone2, String notes) {
     this.firstname = firstname;
     this.middlename = middlename;
     this.lastname = lastname;
