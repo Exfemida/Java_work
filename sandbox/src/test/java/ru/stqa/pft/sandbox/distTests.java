@@ -23,3 +23,4 @@ public class distTests {
     Assert.assertEquals(point1.distance(point2),0);
   }
 }
+// проверка сохраняется ли build
