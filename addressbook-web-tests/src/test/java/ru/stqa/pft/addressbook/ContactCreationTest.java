@@ -6,6 +6,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.annotations.*;
 import org.openqa.selenium.*;
 import org.openqa.selenium.support.ui.Select;
+import ru.stqa.pft.addressbook.model.Contacts;
 
 public class ContactCreationTest {
   private WebDriver wd;
