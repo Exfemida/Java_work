@@ -23,19 +23,6 @@ public class ApplicationManager {
     sessionHelper.login("admin", "secret");
   }
 
-
-//<<<<<<< HEAD
-//  public void login(String username, String password) {
-//    wd.findElement(By.name("user")).clear();
-//    wd.findElement(By.name("user")).sendKeys(username);
-//    wd.findElement(By.name("pass")).click();
-//    wd.findElement(By.name("pass")).clear();
-//   wd.findElement(By.name("pass")).sendKeys(password);
-//    wd.findElement(By.xpath("//input[@value='Login']")).click();
-//  }
-//=======
-//>>>>>>> parent of 28b47e6... Revert "Добавили NavigatorHelper"
-
   public void stop() {
     wd.findElement(By.linkText("Logout")).click();
     wd.quit();
