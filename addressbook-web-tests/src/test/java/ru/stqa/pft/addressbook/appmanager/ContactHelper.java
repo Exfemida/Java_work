@@ -12,8 +12,8 @@ public class ContactHelper extends HelperBase {
 
   public void submitContactCreation() {
    click(By.xpath("(//input[@name='submit'])[2]"));
-  //  wd.findElement(By.xpath("(//input[@name='submit'])[2]")).click();
   }
+
 
   public void fillContactForm(Contacts contacts) {
     type(By.name("firstname"),contacts.getFirstname());
@@ -41,5 +41,17 @@ public class ContactHelper extends HelperBase {
     type(By.name("address2"),contacts.getAddress2());
     type(By.name("phone2"),contacts.getPhone2());
     type(By.name("notes"),contacts.getNotes());
+  }
+
+  public void selectContact(String numStr) {
+    click(By.id(numStr));
+  }
+
+  public void deleteContact() {
+    click(By.xpath("//input[@value='Delete']"));
+  }
+
+  public void closeAlertDelete() {
+    wd.switchTo().alert().accept();
   }
 }
