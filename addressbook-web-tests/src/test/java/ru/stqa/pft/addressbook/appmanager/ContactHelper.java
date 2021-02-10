@@ -42,8 +42,8 @@ public class ContactHelper extends HelperBase {
     type(By.name("notes"),contacts.getNotes());
   }
 
-  public void selectContact(String numStr) {
-    click(By.id(numStr));
+  public void selectContact() {
+    click(By.name("selected[]"));
   }
 
   public void deleteContact() {
