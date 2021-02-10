@@ -55,10 +55,10 @@ public class ContactHelper extends HelperBase {
   }
 
   public void editContact() {
-    click(By.xpath("(//img[@alt='Edit'])[3]"));     //click(By.xpath("(//img[@alt='Edit'])["+numStr+"]"));
+    click(By.xpath("//img[@alt='Edit']"));
   }
 
-  public void submitContactUpdate() {  //String numStr
+  public void submitContactUpdate() {
     click(By.name("update"));
   }
   public void editContactForm(Contacts contacts) {

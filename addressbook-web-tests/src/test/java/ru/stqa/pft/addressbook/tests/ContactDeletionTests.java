@@ -6,7 +6,6 @@ public class ContactDeletionTests extends TestBase{
 
   @Test
   public void testContactDeletion(){
-    //String numStr="15";                       //номер строки для удаления
     app.getContactHelper().selectContact();
     app.getContactHelper().deleteContact();
     app.getContactHelper().closeAlertDelete();
