@@ -71,13 +71,11 @@ public class ContactHelper extends HelperBase {
   }
 
   public boolean isThereAContact() {
-    return isElementPresent(By.id("selected[]"));
+    return isElementPresent(By.xpath("//img[@alt='Edit']"));
   }
 
   public void createContact(Contacts contact, boolean b) {
-    click(By.linkText("add new"));//app.getNavigationHelper().gotoAddContactPage();
     fillContactForm(contact,true);
     submitContactCreation();
-    click(By.linkText("home"));//app.getNavigationHelper().gotoAddContactPage();
   }
 }
