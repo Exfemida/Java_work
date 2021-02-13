@@ -69,4 +69,15 @@ public class ContactHelper extends HelperBase {
   public void submitContactUpdate() {
     click(By.name("update"));
   }
+
+  public boolean isThereAContact() {
+    return isElementPresent(By.id("selected[]"));
+  }
+
+  public void createContact(Contacts contact, boolean b) {
+    click(By.linkText("add new"));//app.getNavigationHelper().gotoAddContactPage();
+    fillContactForm(contact,true);
+    submitContactCreation();
+    click(By.linkText("home"));//app.getNavigationHelper().gotoAddContactPage();
+  }
 }
