@@ -27,9 +27,8 @@ public class ApplicationManager {
       wd = new ChromeDriver();
     } else if (browser==BrowserType.FIREFOX){
       wd = new FirefoxDriver();}
-      else if (browser==BrowserType.EDGE){
-        wd=new InternetExplorerDriver();
-      }
+     // else if (browser==BrowserType.EDGE){     Вызывается старая версия IE, драйвер не подходит
+     // }
 
 
     wd.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
