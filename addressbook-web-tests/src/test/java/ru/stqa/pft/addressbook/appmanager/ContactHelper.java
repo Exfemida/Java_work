@@ -1,11 +1,12 @@
 package ru.stqa.pft.addressbook.appmanager;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.NoSuchElementException;
-import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.*;
 import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
 import ru.stqa.pft.addressbook.model.Contacts;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class ContactHelper extends HelperBase {
   public ContactHelper(WebDriver wd) {
@@ -50,8 +51,9 @@ public class ContactHelper extends HelperBase {
     type(By.name("notes"),contacts.getNotes());
   }
 
-  public void selectContact() {
-    click(By.name("selected[]"));
+  public void selectContact(int index) {
+    wd.findElements(By.name("selected[]")).get(index).click();
+   // click(By.name("selected[]"));
   }
 
   public void deleteContact() {
@@ -77,5 +79,27 @@ public class ContactHelper extends HelperBase {
   public void createContact(Contacts contact, boolean b) {
     fillContactForm(contact,true);
     submitContactCreation();
+  }
+
+  public List<Contacts> getContactsList() {
+    List<Contacts> listOfContacts = new ArrayList<Contacts>();
+    List<WebElement> listOfrow = wd.findElements(By.cssSelector("tr"));
+    listOfrow.remove(0);
+    for (WebElement row : listOfrow) {
+
+        List<WebElement> cells = row.findElements(By.tagName("td"));
+        String id1 =cells.get(0).findElement(By.tagName("input")).getAttribute("id");
+        String lastname = cells.get(1).getText();
+        String firstname = cells.get(2).getText();
+
+        int id=1;
+
+
+        //int id = Integer.parseInt(row.findElement(By.tagName("td.center")).findElement(By.tagName("Input"))getAttribute("id"));
+        Contacts contact = new Contacts(id, lastname, firstname);
+        listOfContacts.add(contact);
+
+    }
+    return listOfContacts;
   }
 }

@@ -1,6 +1,7 @@
 package ru.stqa.pft.addressbook.model;
 
 public class Contacts {
+  private int id;
   private final String firstname;
   private final String middlename;
   private final String lastname;
@@ -27,7 +28,9 @@ public class Contacts {
   private final String phone2;
   private final String notes;
 
+
   public Contacts(String firstname, String middlename, String lastname, String nickname, String title, String company, String address, String home, String mobile, String work, String fax, String email, String email2, String email3, String homepage, String bday, String bmonth, String byear, String aday, String amonth, String ayear, String newGroup, String address2, String phone2, String notes) {
+    this.id=0;
     this.firstname = firstname;
     this.middlename = middlename;
     this.lastname = lastname;
@@ -53,6 +56,36 @@ public class Contacts {
     this.address2 = address2;
     this.phone2 = phone2;
     this.notes = notes;
+  }
+
+  public Contacts(int id, String lastname, String firstname) {
+    this.id = id;
+    this.lastname = lastname;
+    this.middlename = null;
+    this.firstname = firstname;
+    this.nickname = null;
+    this.title = null;
+    this.company = null;
+    this.address = null;
+    this.home = null;
+    this.mobile = null;
+    this.work = null;
+    this.fax = null;
+    this.email = null;
+    this.email2 = null;
+    this.email3 = null;
+    this.homepage = null;
+    this.bday = null;
+    this.bmonth = null;
+    this.byear = null;
+    this.aday = null;
+    this.amonth = null;
+    this.ayear = null;
+    this.newGroup = null;
+    this.address2 = null;
+    this.phone2 = null;
+    this.notes = null;
+
   }
 
   public String getFirstname() {
@@ -154,4 +187,18 @@ public class Contacts {
   public String getNotes() {
     return notes;
   }
+
+  public int getId() {
+    return id;
+  }
+
+  @Override
+  public String toString() {
+    return "Contacts{" +
+            "id=" + id +
+            ", firstname='" + firstname + '\'' +
+            ", lastname='" + lastname + '\'' +
+            '}';
+  }
 }
+
