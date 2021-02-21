@@ -10,7 +10,7 @@ public class GroupDate {
 
 
   public GroupDate(String name, String header, String footer) {
-    this.id = 0;
+    this.id = Integer.MAX_VALUE;
     this.name = name;
     this.header = header;
     this.footer = footer;
@@ -25,29 +25,6 @@ public class GroupDate {
 
   public void setId(int id) {
     this.id = id;
-  }
-
-  @Override
-  public String toString() {
-    return "GroupDate{" +
-            "id=" + id +
-            ", name='" + name + '\'' +
-            '}';
-  }
-
-  @Override
-  public boolean equals(Object o) {
-    if (this == o) return true;
-    if (o == null || getClass() != o.getClass()) return false;
-    GroupDate groupDate = (GroupDate) o;
-    return id == groupDate.id && Objects.equals(name, groupDate.name);
-  }
-
-
-
-  @Override
-  public int hashCode() {
-    return Objects.hash(id, name);
   }
 
   public int getId() {
@@ -66,4 +43,23 @@ public class GroupDate {
     return footer;
   }
 
+  @Override
+  public int hashCode() {
+    return Objects.hash(name);
+  }
+
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) return true;
+    if (o == null || getClass() != o.getClass()) return false;
+    GroupDate groupDate = (GroupDate) o;
+    return Objects.equals(name, groupDate.name);
+  }
+  @Override
+  public String toString() {
+    return "GroupDate{" +
+            "id=" + id +
+            ", name='" + name + '\'' +
+            '}';
+  }
 }
