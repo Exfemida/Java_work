@@ -1,5 +1,7 @@
 package ru.stqa.pft.addressbook.model;
 
+import java.util.Objects;
+
 public class Contacts {
   private int id;
   private final String firstname;
@@ -30,7 +32,7 @@ public class Contacts {
 
 
   public Contacts(String firstname, String middlename, String lastname, String nickname, String title, String company, String address, String home, String mobile, String work, String fax, String email, String email2, String email3, String homepage, String bday, String bmonth, String byear, String aday, String amonth, String ayear, String newGroup, String address2, String phone2, String notes) {
-    this.id=0;
+    this.id=Integer.MAX_VALUE;
     this.firstname = firstname;
     this.middlename = middlename;
     this.lastname = lastname;
@@ -190,6 +192,19 @@ public class Contacts {
 
   public int getId() {
     return id;
+  }
+
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) return true;
+    if (o == null || getClass() != o.getClass()) return false;
+    Contacts contacts = (Contacts) o;
+    return id == contacts.id && Objects.equals(firstname, contacts.firstname) && Objects.equals(lastname, contacts.lastname);
+  }
+
+  @Override
+  public int hashCode() {
+    return Objects.hash(id, firstname, lastname);
   }
 
   @Override
