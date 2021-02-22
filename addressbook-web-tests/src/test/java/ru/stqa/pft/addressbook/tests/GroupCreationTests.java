@@ -19,6 +19,7 @@ public class GroupCreationTests extends TestBase {
     List<GroupDate> after=app.getGroupHelper().getGroupList();
     Assert.assertEquals(after.size(),before.size()+1);
 
+    //первый вариант вычисления элемента с мах id
     int max=0;
     for (GroupDate g:after){
       if(g.getId() > max){
@@ -26,6 +27,7 @@ public class GroupCreationTests extends TestBase {
       }
     }
 
+    //второй вариант вычисления элемента с мах id
     group.setId(after.stream().max((o1, o2) -> Integer.compare(o1.getId(), o2.getId())).get().getId());
     before.add (group);
 
