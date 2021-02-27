@@ -13,18 +13,18 @@ public class ContactCreationTest extends TestBase {
   @Test (enabled = false)
   public void testCreateNewContact() throws Exception {
 
-    app.getNavigationHelper().gotoGroupPage();                    //проверка наличия в базе созданных групп
-    if (!app.getGroupHelper().isThereAGroup()) {
-      app.getGroupHelper().createGroup(new GroupDate("test1", null, null));
+    app.goTo().groupPage();                    //проверка наличия в базе созданных групп
+    if (!app.group().isThereAGroup()) {
+      app.group().create(new GroupDate("test1", null, null));
     }
 
-    app.getNavigationHelper().gotoStartPage();
+    app.goTo().gotoStartPage();
     List<Contacts> before = app.getContactHelper().getContactsList();
-    app.getNavigationHelper().gotoAddContactPage();
+    app.goTo().gotoAddContactPage();
     Contacts cont = new Contacts("Maria", "Sergeevna", "Ivanova", "Mashka", "do not know", "Rosneft", "Moskwa, 6", "2222222", "3333333", "4444444", "5555555", "email_1", "email_2", "email_3", "mashka.ru", "8", "May", "1982", "12", "September", "2004", "test1", "Kiev", "34", "kak dela?");
     app.getContactHelper().createContact(cont, true);
     //  app.getNavigationHelper().gotoAddContactPage();
-    app.getNavigationHelper().gotoStartPage();
+    app.goTo().gotoStartPage();
     List<Contacts> after = app.getContactHelper().getContactsList();
     Assert.assertEquals(after.size(), before.size() + 1);
 
