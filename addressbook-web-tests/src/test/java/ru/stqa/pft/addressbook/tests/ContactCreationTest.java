@@ -15,7 +15,7 @@ public class ContactCreationTest extends TestBase {
 
     app.goTo().groupPage();                    //проверка наличия в базе созданных групп
     if (!app.group().isThereAGroup()) {
-      app.group().create(new GroupDate("test1", null, null));
+      app.group().create(new GroupDate().withName("test2"));
     }
 
     app.goTo().gotoStartPage();
