@@ -3,9 +3,6 @@ package ru.stqa.pft.addressbook.tests;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import ru.stqa.pft.addressbook.model.GroupDate;
-
-import java.util.Comparator;
-import java.util.List;
 import java.util.Set;
 
 public class GroupCreationTests extends TestBase {
