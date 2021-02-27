@@ -10,7 +10,7 @@ import java.util.List;
 
 public class ContactCreationTest extends TestBase {
 
-  @Test
+  @Test (enabled = false)
   public void testCreateNewContact() throws Exception {
 
     app.getNavigationHelper().gotoGroupPage();                    //проверка наличия в базе созданных групп
