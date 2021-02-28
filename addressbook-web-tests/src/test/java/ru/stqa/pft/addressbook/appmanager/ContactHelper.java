@@ -117,15 +117,7 @@ public class ContactHelper extends HelperBase {
       int id = Integer.parseInt(cells.get(0).findElement(By.tagName("input")).getAttribute("id"));
       String lastname = cells.get(1).getText();
       String firstname = cells.get(2).getText();
-      contacts.add(new ContactDate()
-                      .withId(id).withFirstname(firstname).withMiddlename(null).withLastname(lastname)
-                      .withNickname(null).withTitle(null).withCompany(null)
-                      .withAddress(null).withHome(null).withMobile(null).withWork(null)
-                      .withFax(null).withEmail(null).withEmail2(null).withEmail3(null)
-                      .withHomepage(null)
-                      .withBday(null).withBmonth(null).withByear(null)
-                      .withAday(null).withAmonth(null).withAyear(null)
-                      .withNewGroup(null).withAddress2(null).withPhone2(null).withNotes(null));
+      contacts.add(new ContactDate().withId(id).withFirstname(firstname).withLastname(lastname));
     }
     return contacts;
 

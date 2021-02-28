@@ -1,13 +1,12 @@
 package ru.stqa.pft.addressbook.tests;
 
-import org.testng.Assert;
+import org.hamcrest.CoreMatchers;
+import org.hamcrest.MatcherAssert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import ru.stqa.pft.addressbook.model.ContactDate;
+import ru.stqa.pft.addressbook.model.Contacts;
 import ru.stqa.pft.addressbook.model.GroupDate;
-
-import java.util.Comparator;
-import java.util.List;
 
 public class ContactCreationTest extends TestBase {
 
@@ -21,15 +20,8 @@ public class ContactCreationTest extends TestBase {
 
   @Test //(enabled = false)
   public void testCreateNewContact() throws Exception {
-
- //   app.goTo().groupPage();                    //проверка наличия в базе созданных групп
- //   if (!app.group().isThereAGroup()) {
- //     app.group().create(new GroupDate().withName("test2"));
- //   }
-
-
     app.goTo().StartPage();
-    List<ContactDate> before = app.contact().getContactsList();
+    Contacts before = app.contact().all();
     app.goTo().AddContactPage();
     ContactDate cont = new ContactDate()
             .withFirstname("Maria").withMiddlename("Sergeevna").withLastname("Ivanova")
@@ -41,18 +33,11 @@ public class ContactCreationTest extends TestBase {
             .withNewGroup("test1").withAddress2("Kiev").withPhone2("34").withNotes("kak dela?");
 
     app.contact().create(cont, true);
-    //  app.getNavigationHelper().gotoAddContactPage();
     app.goTo().StartPage();
-    List<ContactDate> after = app.contact().getContactsList();
-    Assert.assertEquals(after.size(), before.size() + 1);
+    Contacts after = app.contact().all();
 
-    //поиск(возврат) элемента cont из списка after с максимальным id
-   // contact.setId(after.stream().max((o1, o2) -> Integer.compare(o1.getId(), o2.getId())).get().getId());
-    before.add(cont);
-
-    Comparator<? super ContactDate> byId = (g1, g2) -> Integer.compare(g1.getId(), g2.getId());
-    before.sort(byId);
-    after.sort(byId);
-    Assert.assertEquals(before, after);
+    MatcherAssert.assertThat(after.size(), CoreMatchers.equalTo(before.size()+1));
+    MatcherAssert.assertThat(after, CoreMatchers.equalTo(
+            before.withAdded(cont.withId(after.stream().mapToInt((g) ->g.getId()).max().getAsInt()))));
   }
 }
