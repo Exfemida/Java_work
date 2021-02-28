@@ -3,7 +3,7 @@ package ru.stqa.pft.addressbook.appmanager;
 import org.openqa.selenium.*;
 import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
-import ru.stqa.pft.addressbook.model.Contacts;
+import ru.stqa.pft.addressbook.model.ContactDate;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,7 +18,7 @@ public class ContactHelper extends HelperBase {
   }
 
 
-  public void fillContactForm(Contacts contacts, boolean creation) {
+  public void fillContactForm(ContactDate contacts, boolean creation) {
     type(By.name("firstname"),contacts.getFirstname());
     type(By.name("middlename"),contacts.getMiddlename());
     type(By.name("lastname"),contacts.getLastname());
@@ -77,13 +77,13 @@ public class ContactHelper extends HelperBase {
     return isElementPresent(By.xpath("//img[@alt='Edit']"));
   }
 
-  public void createContact(Contacts contact, boolean b) {
+  public void createContact(ContactDate contact, boolean b) {
     fillContactForm(contact,true);
     submitContactCreation();
   }
 
-  public List<Contacts> getContactsList() {
-    List<Contacts> listOfContacts = new ArrayList<Contacts>();
+  public List<ContactDate> getContactsList() {
+    List<ContactDate> listOfContacts = new ArrayList<ContactDate>();
     List<WebElement> listOfrow = wd.findElements(By.cssSelector("tr"));
     listOfrow.remove(0);
     for (WebElement row : listOfrow) {
@@ -91,7 +91,7 @@ public class ContactHelper extends HelperBase {
         int id =Integer.parseInt(cells.get(0).findElement(By.tagName("input")).getAttribute("id"));
         String lastname = cells.get(1).getText();
         String firstname = cells.get(2).getText();
-        Contacts contact = new Contacts(id, lastname, firstname);
+        ContactDate contact = new ContactDate(id, lastname, firstname);
         listOfContacts.add(contact);
     }
     return listOfContacts;

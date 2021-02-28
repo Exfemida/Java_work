@@ -2,7 +2,7 @@ package ru.stqa.pft.addressbook.model;
 
 import java.util.Objects;
 
-public class Contacts {
+public class ContactDate {
   private int id;
   private final String firstname;
   private final String middlename;
@@ -31,7 +31,7 @@ public class Contacts {
   private final String notes;
 
 
-  public Contacts(String firstname, String middlename, String lastname, String nickname, String title, String company, String address, String home, String mobile, String work, String fax, String email, String email2, String email3, String homepage, String bday, String bmonth, String byear, String aday, String amonth, String ayear, String newGroup, String address2, String phone2, String notes) {
+  public ContactDate(String firstname, String middlename, String lastname, String nickname, String title, String company, String address, String home, String mobile, String work, String fax, String email, String email2, String email3, String homepage, String bday, String bmonth, String byear, String aday, String amonth, String ayear, String newGroup, String address2, String phone2, String notes) {
     this.id=Integer.MAX_VALUE;
     this.firstname = firstname;
     this.middlename = middlename;
@@ -60,7 +60,7 @@ public class Contacts {
     this.notes = notes;
   }
 
-  public Contacts(int id, String lastname, String firstname) {
+  public ContactDate(int id, String lastname, String firstname) {
     this.id = id;
     this.lastname = lastname;
     this.middlename = null;
@@ -202,7 +202,7 @@ public class Contacts {
   public boolean equals(Object o) {
     if (this == o) return true;
     if (o == null || getClass() != o.getClass()) return false;
-    Contacts contacts = (Contacts) o;
+    ContactDate contacts = (ContactDate) o;
     return id == contacts.id && Objects.equals(firstname, contacts.firstname) && Objects.equals(lastname, contacts.lastname);
   }
 
