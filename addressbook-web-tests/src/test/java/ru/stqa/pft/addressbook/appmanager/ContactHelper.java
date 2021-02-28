@@ -5,8 +5,6 @@ import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
 import ru.stqa.pft.addressbook.model.ContactDate;
 import ru.stqa.pft.addressbook.model.Contacts;
-import ru.stqa.pft.addressbook.model.GroupDate;
-import ru.stqa.pft.addressbook.model.Groups;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -58,7 +56,7 @@ public class ContactHelper extends HelperBase {
     wd.findElements(By.name("selected[]")).get(index).click();
    // click(By.name("selected[]"));
   }
-  public void selectGroupById(int id) {
+  public void selectContactById(int id) {
     wd.findElement(By.cssSelector("input[id='"+id+"']")).click();
   }
 
@@ -74,6 +72,9 @@ public class ContactHelper extends HelperBase {
     wd.findElements(By.xpath("//img[@alt='Edit']")).get(index).click();
    // click(By.xpath("//img[@alt='Edit']"));
   }
+  public void editContactById(int id) {
+   wd.findElement(By.xpath("//a[@href='edit.php?id=" + id + "']")).click();
+  }
 
   public void submitContactUpdate() {
     click(By.name("update"));
@@ -88,7 +89,7 @@ public class ContactHelper extends HelperBase {
     submitContactCreation();
   }
   public void delete(ContactDate contact) {
-    selectGroupById(contact.getId());
+    selectContactById(contact.getId());
     deleteContact();
     closeAlertDelete();
   }
@@ -122,6 +123,7 @@ public class ContactHelper extends HelperBase {
     return contacts;
 
   }
+
 
 
 }
