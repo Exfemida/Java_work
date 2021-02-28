@@ -28,18 +28,26 @@ public class ContactCreationTest extends TestBase {
  //   }
 
 
-    app.goTo().gotoStartPage();
-    List<ContactDate> before = app.getContactHelper().getContactsList();
-    app.goTo().gotoAddContactPage();
-    ContactDate cont = new ContactDate("Maria", "Sergeevna", "Ivanova", "Mashka", "do not know", "Rosneft", "Moskwa, 6", "2222222", "3333333", "4444444", "5555555", "email_1", "email_2", "email_3", "mashka.ru", "8", "May", "1982", "12", "September", "2004", "test1", "Kiev", "34", "kak dela?");
-    app.getContactHelper().createContact(cont, true);
+    app.goTo().StartPage();
+    List<ContactDate> before = app.contact().getContactsList();
+    app.goTo().AddContactPage();
+    ContactDate cont = new ContactDate()
+            .withFirstname("Maria").withMiddlename("Sergeevna").withLastname("Ivanova")
+            .withNickname("Mashka").withTitle("do not know").withCompany("Rosneft")
+            .withAddress("Moskwa, 6").withHome("2222222").withMobile("3333333").withWork("4444444")
+            .withFax("5555555").withEmail("email_1").withEmail2("email_2").withEmail3("email_3")
+            .withHomepage("mashka.ru").withBday("8").withBmonth("May").withByear("1982")
+            .withAday("12").withAmonth("September").withAyear("2004")
+            .withNewGroup("test1").withAddress2("Kiev").withPhone2("34").withNotes("kak dela?");
+
+    app.contact().create(cont, true);
     //  app.getNavigationHelper().gotoAddContactPage();
-    app.goTo().gotoStartPage();
-    List<ContactDate> after = app.getContactHelper().getContactsList();
+    app.goTo().StartPage();
+    List<ContactDate> after = app.contact().getContactsList();
     Assert.assertEquals(after.size(), before.size() + 1);
 
     //поиск(возврат) элемента cont из списка after с максимальным id
-    cont.setId(after.stream().max((o1, o2) -> Integer.compare(o1.getId(), o2.getId())).get().getId());
+   // contact.setId(after.stream().max((o1, o2) -> Integer.compare(o1.getId(), o2.getId())).get().getId());
     before.add(cont);
 
     Comparator<? super ContactDate> byId = (g1, g2) -> Integer.compare(g1.getId(), g2.getId());

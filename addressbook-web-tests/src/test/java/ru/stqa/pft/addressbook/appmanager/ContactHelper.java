@@ -4,6 +4,9 @@ import org.openqa.selenium.*;
 import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
 import ru.stqa.pft.addressbook.model.ContactDate;
+import ru.stqa.pft.addressbook.model.Contacts;
+import ru.stqa.pft.addressbook.model.GroupDate;
+import ru.stqa.pft.addressbook.model.Groups;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -55,6 +58,9 @@ public class ContactHelper extends HelperBase {
     wd.findElements(By.name("selected[]")).get(index).click();
    // click(By.name("selected[]"));
   }
+  public void selectGroupById(int id) {
+    wd.findElement(By.cssSelector("input[id='"+id+"']")).click();
+  }
 
   public void deleteContact() {
     click(By.xpath("//input[@value='Delete']"));
@@ -77,9 +83,14 @@ public class ContactHelper extends HelperBase {
     return isElementPresent(By.xpath("//img[@alt='Edit']"));
   }
 
-  public void createContact(ContactDate contact, boolean b) {
+  public void create(ContactDate contact, boolean b) {
     fillContactForm(contact,true);
     submitContactCreation();
+  }
+  public void delete(ContactDate contact) {
+    selectGroupById(contact.getId());
+    deleteContact();
+    closeAlertDelete();
   }
 
   public List<ContactDate> getContactsList() {
@@ -91,9 +102,36 @@ public class ContactHelper extends HelperBase {
         int id =Integer.parseInt(cells.get(0).findElement(By.tagName("input")).getAttribute("id"));
         String lastname = cells.get(1).getText();
         String firstname = cells.get(2).getText();
-        ContactDate contact = new ContactDate(id, lastname, firstname);
+        ContactDate contact = new ContactDate().withId(id).withLastname(lastname).withFirstname(firstname);
         listOfContacts.add(contact);
     }
     return listOfContacts;
   }
+
+  public Contacts all() {
+   Contacts contacts=new Contacts();
+    List<WebElement> listOfrow = wd.findElements(By.cssSelector("tr"));
+    listOfrow.remove(0);
+    for (WebElement row : listOfrow) {
+      List<WebElement> cells = row.findElements(By.tagName("td"));
+      int id = Integer.parseInt(cells.get(0).findElement(By.tagName("input")).getAttribute("id"));
+      String lastname = cells.get(1).getText();
+      String firstname = cells.get(2).getText();
+      contacts.add(new ContactDate()
+                      .withId(id).withFirstname(firstname).withMiddlename(null).withLastname(lastname)
+                      .withNickname(null).withTitle(null).withCompany(null)
+                      .withAddress(null).withHome(null).withMobile(null).withWork(null)
+                      .withFax(null).withEmail(null).withEmail2(null).withEmail3(null)
+                      .withHomepage(null)
+                      .withBday(null).withBmonth(null).withByear(null)
+                      .withAday(null).withAmonth(null).withAyear(null)
+                      .withNewGroup(null).withAddress2(null).withPhone2(null).withNotes(null));
+    }
+    return contacts;
+
+  }
+
+
 }
+
+

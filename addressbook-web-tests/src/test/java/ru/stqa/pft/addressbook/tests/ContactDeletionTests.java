@@ -1,45 +1,49 @@
 package ru.stqa.pft.addressbook.tests;
 
-import org.testng.Assert;
+import org.hamcrest.CoreMatchers;
+import org.hamcrest.MatcherAssert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import ru.stqa.pft.addressbook.model.ContactDate;
+import ru.stqa.pft.addressbook.model.Contacts;
 import ru.stqa.pft.addressbook.model.GroupDate;
 
-import java.util.List;
+import static org.testng.Assert.assertEquals;
 
 public class ContactDeletionTests extends TestBase {
 
   @BeforeMethod
   public void ensurePreconditions() {
-    app.goTo().groupPage();
-    if (app.group().all().size()==0) {
-      app.group().create(new GroupDate().withName("test1"));
-    }
   }
 
-  @Test (enabled = false)
+  @Test (enabled = true)
   public void testContactDeletion() {
 
-    if (!app.getContactHelper().isThereAContact()) {          //проверка наличия в базе созданных контактов
-      app.goTo().groupPage();                    //проверка наличия в базе созданных групп
-      if (!app.group().isThereAGroup()) {
-        app.group().create(new GroupDate().withName("test2"));
-      }
-      app.goTo().gotoAddContactPage();
-      app.getContactHelper().createContact(new ContactDate("Maria", "Sergeevna", "Ivanova", "Mashka", "do not know", "Rosneft", "Moskwa, 6", "2222222", "3333333", "4444444", "5555555", "email_1", "email_2", "email_3", "mashka.ru", "8", "May", "1982", "12", "September", "2004", "test1", "Kiev", "34", "kak dela?"), true);
-    }
+//    if (app.contact().all().size()==0) {          //проверка наличия в базе созданных контактов
+//      app.goTo().groupPage();                    //проверка наличия в базе созданных групп
+//      if (app.group().all().size()==0) {
+//        app.group().create(new GroupDate().withName("test2"));
+//      }
+//      app.goTo().AddContactPage();
+//      app.contact().create(new ContactDate()
+//              .withFirstname("Maria").withMiddlename("Sergeevna").withLastname("Ivanova")
+//              .withNickname("Mashka").withTitle("do not know").withCompany("Rosneft")
+//              .withAddress("Moskwa, 6").withHome("2222222").withMobile("3333333").withWork("4444444")
+//              .withFax("5555555").withEmail("email_1").withEmail2("email_2").withEmail3("email_3")
+//              .withHomepage("mashka.ru").withBday("8").withBmonth("May").withByear("1982")
+//              .withAday("12").withAmonth("September").withAyear("2004")
+//              .withNewGroup("test1").withAddress2("Kiev").withPhone2("34").withNotes("kak dela?"), true);
+//    }
 
 
-    app.goTo().gotoStartPage();
-    List<ContactDate> before=app.getContactHelper().getContactsList();
-    app.getContactHelper().selectContact(before.size()-1);
-    app.getContactHelper().deleteContact();
-    app.getContactHelper().closeAlertDelete();
-    app.goTo().gotoStartPage();
-    List<ContactDate> after=app.getContactHelper().getContactsList();
-    before.remove(before.size()-1);
-    Assert.assertEquals(before.size(),after.size());
-    Assert.assertEquals(before, after);
+    app.goTo().StartPage();
+    Contacts before=app.contact().all();
+    ContactDate deletedContact = before.iterator().next();
+    app.contact().delete(deletedContact);
+    app.goTo().StartPage();
+    Contacts after=app.contact().all();
+    assertEquals(after.size(),before.size()-1);
+    MatcherAssert.assertThat(after, CoreMatchers.equalTo(before.without(deletedContact)));
+
   }
 }

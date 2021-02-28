@@ -3,92 +3,35 @@ package ru.stqa.pft.addressbook.model;
 import java.util.Objects;
 
 public class ContactDate {
-  private int id;
-  private final String firstname;
-  private final String middlename;
-  private final String lastname;
-  private final String nickname;
-  private final String title;
-  private final String company;
-  private final String address;
-  private final String home;
-  private final String mobile;
-  private final String work;
-  private final String fax;
-  private final String email;
-  private final String email2;
-  private final String email3;
-  private final String homepage;
-  private final String bday;
-  private final String bmonth;
-  private final String byear;
-  private final String aday;
-  private final String amonth;
-  private final String ayear;
-  private final String newGroup;
-  private final String address2;
-  private final String phone2;
-  private final String notes;
+  private int id=Integer.MAX_VALUE;;
+  private String firstname;
+  private String middlename;
+  private String lastname;
+  private String nickname;
+  private String title;
+  private String company;
+  private String address;
+  private String home;
+  private String mobile;
+  private String work;
+  private String fax;
+  private String email;
+  private String email2;
+  private String email3;
+  private String homepage;
+  private String bday;
+  private String bmonth;
+  private String byear;
+  private String aday;
+  private String amonth;
+  private String ayear;
+  private String newGroup;
+  private String address2;
+  private String phone2;
+  private String notes;
 
 
-  public ContactDate(String firstname, String middlename, String lastname, String nickname, String title, String company, String address, String home, String mobile, String work, String fax, String email, String email2, String email3, String homepage, String bday, String bmonth, String byear, String aday, String amonth, String ayear, String newGroup, String address2, String phone2, String notes) {
-    this.id=Integer.MAX_VALUE;
-    this.firstname = firstname;
-    this.middlename = middlename;
-    this.lastname = lastname;
-    this.nickname = nickname;
-    this.title = title;
-    this.company = company;
-    this.address = address;
-    this.home = home;
-    this.mobile = mobile;
-    this.work = work;
-    this.fax = fax;
-    this.email = email;
-    this.email2 = email2;
-    this.email3 = email3;
-    this.homepage = homepage;
-    this.bday = bday;
-    this.bmonth = bmonth;
-    this.byear = byear;
-    this.aday = aday;
-    this.amonth = amonth;
-    this.ayear = ayear;
-    this.newGroup = newGroup;
-    this.address2 = address2;
-    this.phone2 = phone2;
-    this.notes = notes;
-  }
 
-  public ContactDate(int id, String lastname, String firstname) {
-    this.id = id;
-    this.lastname = lastname;
-    this.middlename = null;
-    this.firstname = firstname;
-    this.nickname = null;
-    this.title = null;
-    this.company = null;
-    this.address = null;
-    this.home = null;
-    this.mobile = null;
-    this.work = null;
-    this.fax = null;
-    this.email = null;
-    this.email2 = null;
-    this.email3 = null;
-    this.homepage = null;
-    this.bday = null;
-    this.bmonth = null;
-    this.byear = null;
-    this.aday = null;
-    this.amonth = null;
-    this.ayear = null;
-    this.newGroup = null;
-    this.address2 = null;
-    this.phone2 = null;
-    this.notes = null;
-
-  }
 
   public String getFirstname() {
     return firstname;
@@ -194,9 +137,112 @@ public class ContactDate {
     return id;
   }
 
-  public void setId(int id) {
+
+  public ContactDate withId(int id) {
     this.id = id;
+    return this;
   }
+  public ContactDate withFirstname(String firstname) {
+    this.firstname=firstname;
+    return this;
+  }
+  public ContactDate withMiddlename(String middlename) {
+    this.middlename=middlename;
+    return this;
+  }
+  public ContactDate withLastname(String lastname) {
+    this.lastname=lastname;
+    return this;
+  }
+  public ContactDate withNickname(String nickname) {
+    this.nickname=nickname;
+    return this;
+  }
+  public ContactDate withTitle(String title) {
+    this.title=title;
+    return this;
+  }
+  public ContactDate withCompany(String company) {
+    this.company=company;
+    return this;
+  }
+  public ContactDate withAddress(String address) {
+    this.address=address;
+    return this;
+  }
+  public ContactDate withHome(String home) {
+    this.home=home;
+    return this;
+  }
+  public ContactDate withMobile(String mobile) {
+    this.mobile=mobile;
+    return this;
+  }
+  public ContactDate withWork(String work) {
+    this.work=work;
+    return this;
+  }
+  public ContactDate withFax(String fax) {
+    this.fax=fax;
+    return this;
+  }
+  public ContactDate withEmail(String email) {
+    this.email=email;
+    return this;
+  }
+  public ContactDate withEmail2(String email2) {
+    this.email2=email2;
+    return this;
+  }
+  public ContactDate withEmail3(String email3) {
+    this.email3=email3;
+    return this;
+  }
+  public ContactDate withHomepage(String homepage) {
+    this.homepage=homepage;
+    return this;
+  }
+  public ContactDate withBday(String bday) {
+    this.bday=bday;
+    return this;
+  }
+  public ContactDate withBmonth(String bmonth) {
+    this.bmonth=bmonth;
+    return this;
+  }
+  public ContactDate withByear(String byear) {
+    this.byear=byear;
+    return this;
+  }
+  public ContactDate withAday(String aday) {
+    this.aday=aday;
+    return this;
+  }
+  public ContactDate withAmonth(String amonth) {
+    this.amonth=amonth;
+    return this;
+  }
+  public ContactDate withAyear(String ayear) {
+    this.ayear=ayear;
+    return this;
+  }
+  public ContactDate withNewGroup(String newGroup) {
+    this.newGroup=newGroup;
+    return this;
+  }
+  public ContactDate withAddress2(String address2) {
+    this.address2=address2;
+    return this;
+  }
+  public ContactDate withPhone2(String phone2) {
+    this.phone2=phone2;
+    return this;
+  }
+  public ContactDate withNotes(String notes) {
+    this.notes=notes;
+    return this;
+  }
+
 
   @Override
   public boolean equals(Object o) {
@@ -219,5 +265,7 @@ public class ContactDate {
             ", lastname='" + lastname + '\'' +
             '}';
   }
+
+
 }
 
