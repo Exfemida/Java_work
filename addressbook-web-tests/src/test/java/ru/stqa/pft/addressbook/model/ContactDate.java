@@ -170,15 +170,15 @@ public class ContactDate {
     this.address=address;
     return this;
   }
-  public ContactDate withHome(String home) {
+  public ContactDate withHomePhone(String home) {
     this.home=home;
     return this;
   }
-  public ContactDate withMobile(String mobile) {
+  public ContactDate withMobilePhone(String mobile) {
     this.mobile=mobile;
     return this;
   }
-  public ContactDate withWork(String work) {
+  public ContactDate withWorkPhone(String work) {
     this.work=work;
     return this;
   }

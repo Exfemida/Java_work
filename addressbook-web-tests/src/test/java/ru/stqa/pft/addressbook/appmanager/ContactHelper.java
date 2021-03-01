@@ -73,7 +73,11 @@ public class ContactHelper extends HelperBase {
    // click(By.xpath("//img[@alt='Edit']"));
   }
   public void initEditContactById(int id) {
-   wd.findElement(By.xpath("//a[@href='edit.php?id=" + id + "']")).click();
+  // wd.findElement(By.xpath("//a[@href='edit.php?id=" + id + "']")).click();
+    WebElement checkbox = wd.findElement(By.cssSelector(String.format("input[value=''%s]",id)));
+    WebElement row = checkbox.findElement(By.xpath("./../.."));
+    List <WebElement> cells = row.findElements(By.tagName("td"));
+    cells.get(7).findElement(By.tagName("a")).click();
   }
 
   public void submitContactUpdate() {
@@ -121,11 +125,19 @@ public class ContactHelper extends HelperBase {
       contacts.add(new ContactDate().withId(id).withFirstname(firstname).withLastname(lastname));
     }
     return contacts;
-
   }
 
-
-
+  public ContactDate infoFormEditForm(ContactDate contact) {
+    initEditContactById(contact.getId());
+    String firstname=wd.findElement(By.name("firstname")).getAttribute("value");
+    String lastname=wd.findElement(By.name("lastname")).getAttribute("value");
+    String home=wd.findElement(By.name("home")).getAttribute("value");
+    String mobile=wd.findElement(By.name("mobile")).getAttribute("value");
+    String work=wd.findElement(By.name("work")).getAttribute("value");
+    wd.navigate().back();
+    return new ContactDate().withId(contact.getId()).withFirstname(firstname).withLastname(lastname)
+            .withHomePhone(home).withMobilePhone(mobile).withWorkPhone(work);
+  }
 }
 
 

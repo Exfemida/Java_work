@@ -26,7 +26,7 @@ public class ContactCreationTest extends TestBase {
     ContactDate cont = new ContactDate()
             .withFirstname("Maria").withMiddlename("Sergeevna").withLastname("Ivanova")
             .withNickname("Mashka").withTitle("do not know").withCompany("Rosneft")
-            .withAddress("Moskwa, 6").withHome("2222222").withMobile("3333333").withWork("4444444")
+            .withAddress("Moskwa, 6").withHomePhone("2222222").withMobilePhone("3333333").withWorkPhone("4444444")
             .withFax("5555555").withEmail("email_1").withEmail2("email_2").withEmail3("email_3")
             .withHomepage("mashka.ru").withBday("8").withBmonth("May").withByear("1982")
             .withAday("12").withAmonth("September").withAyear("2004")
