@@ -14,9 +14,9 @@ public class ContactModificationTests extends TestBase {
 
   @BeforeMethod
   public void ensurePreconditions() {
-    if (app.contact().all().size()==0) {          //проверка наличия в базе созданных контактов
+    if (app.contact().all().size() == 0) {          //проверка наличия в базе созданных контактов
       app.goTo().groupPage();                    //проверка наличия в базе созданных групп
-      if (app.group().all().size()==0) {
+      if (app.group().all().size() == 0) {
         app.group().create(new GroupDate().withName("test2"));
       }
       app.goTo().AddContactPage();
@@ -37,9 +37,9 @@ public class ContactModificationTests extends TestBase {
     app.goTo().StartPage();
     Contacts before = app.contact().all();
     ContactDate modifyContact = before.iterator().next();
-    ContactDate oldContact=modifyContact;
+    ContactDate oldContact = modifyContact;
     app.contact().initEditContactById(modifyContact.getId());
-    modifyContact = new ContactDate().withFirstname("Maria").withLastname("Kuchina")
+    modifyContact = new ContactDate().withId(modifyContact.getId()).withFirstname("Maria").withLastname("Kochina")
             .withNickname("Mashka").withTitle("do not know").withCompany("Rosneft")
             .withAddress("Moskwa, 6").withHome("2222222").withMobile("3333333").withWork("4444444")
             .withFax("5555555").withEmail("email_1").withEmail2("email_2").withEmail3("email_3")
@@ -50,10 +50,14 @@ public class ContactModificationTests extends TestBase {
     app.contact().submitContactUpdate();
     app.goTo().StartPage();
     Contacts after = app.contact().all();
+    ContactDate newContact = new ContactDate()
+            .withId(modifyContact.getId())
+            .withFirstname(modifyContact.getFirstname())
+            .withLastname(modifyContact.getLastname());
 
-    assertEquals(after.size(),before.size());
+    assertEquals(after.size(), before.size());
     MatcherAssert.assertThat(after, CoreMatchers.equalTo(
-            before.without(oldContact).withAdded(modifyContact)));
+            before.without(oldContact).withAdded(newContact)));
 
   }
 }
