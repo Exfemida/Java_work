@@ -29,8 +29,7 @@ public class ContactDate {
   private String address2;
   private String phone2;
   private String notes;
-
-
+  private String allPhones;
 
 
   public String getFirstname() {
@@ -137,8 +136,11 @@ public class ContactDate {
     return id;
   }
 
+  public String getAllPhones() {
+    return allPhones;
+  }
 
-  public ContactDate withId(int id) {
+    public ContactDate withId(int id) {
     this.id = id;
     return this;
   }
@@ -240,6 +242,10 @@ public class ContactDate {
   }
   public ContactDate withNotes(String notes) {
     this.notes=notes;
+    return this;
+  }
+  public ContactDate withAllPhones(String allPhones) {
+    this.allPhones = allPhones;
     return this;
   }
 
