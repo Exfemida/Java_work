@@ -123,7 +123,10 @@ public class ContactHelper extends HelperBase {
       String lastname = cells.get(1).getText();
       String firstname = cells.get(2).getText();
       String allPhones = cells.get(5).getText();
-      contacts.add(new ContactDate().withId(id).withFirstname(firstname).withLastname(lastname).withAllPhones(allPhones));
+      String allEmails = cells.get(4).getText();
+      String address = cells.get(3).getText();
+      contacts.add(new ContactDate().withId(id).withFirstname(firstname).withLastname(lastname)
+              .withAllPhones(allPhones).withAllEmails(allEmails).withAddress(address));
     }
     return contacts;
   }
@@ -135,9 +138,14 @@ public class ContactHelper extends HelperBase {
     String home=wd.findElement(By.name("home")).getAttribute("value");
     String mobile=wd.findElement(By.name("mobile")).getAttribute("value");
     String work=wd.findElement(By.name("work")).getAttribute("value");
+    String email=wd.findElement(By.name("email")).getAttribute("value");
+    String email2=wd.findElement(By.name("email2")).getAttribute("value");
+    String email3=wd.findElement(By.name("email3")).getAttribute("value");
+    String address=wd.findElement(By.name("address")).getAttribute("value");
     wd.navigate().back();
     return new ContactDate().withId(contact.getId()).withFirstname(firstname).withLastname(lastname)
-            .withHomePhone(home).withMobilePhone(mobile).withWorkPhone(work);
+            .withHomePhone(home).withMobilePhone(mobile).withWorkPhone(work).
+                    withEmail(email).withEmail2(email2).withEmail3(email3).withAddress(address);
   }
 }
 
