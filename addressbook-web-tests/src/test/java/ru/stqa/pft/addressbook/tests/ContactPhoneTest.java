@@ -40,7 +40,7 @@ public class ContactPhoneTest extends TestBase {
 
 
   @Test
-  
+
   public void testContactData(){
     ContactDate contact =app.contact().all().iterator().next();
     ContactDate contactInfoFromEditForm = app.contact().infoFormEditForm(contact);

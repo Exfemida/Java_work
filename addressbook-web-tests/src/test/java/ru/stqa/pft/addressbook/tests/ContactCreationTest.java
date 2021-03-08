@@ -8,6 +8,8 @@ import ru.stqa.pft.addressbook.model.ContactDate;
 import ru.stqa.pft.addressbook.model.Contacts;
 import ru.stqa.pft.addressbook.model.GroupDate;
 
+import java.io.File;
+
 public class ContactCreationTest extends TestBase {
 
   @BeforeMethod
@@ -23,6 +25,7 @@ public class ContactCreationTest extends TestBase {
     app.goTo().StartPage();
     Contacts before = app.contact().all();
     app.goTo().AddContactPage();
+    File photo = new File("src/test/resources/stru.png");
     ContactDate cont = new ContactDate()
             .withFirstname("Maria").withMiddlename("Sergeevna").withLastname("Ivanova")
             .withNickname("Mashka").withTitle("do not know").withCompany("Rosneft")
@@ -30,7 +33,7 @@ public class ContactCreationTest extends TestBase {
             .withFax("5555555").withEmail("email_1").withEmail2("email_2").withEmail3("email_3")
             .withHomepage("mashka.ru").withBday("8").withBmonth("May").withByear("1982")
             .withAday("12").withAmonth("September").withAyear("2004")
-            .withNewGroup("test1").withAddress2("Kiev").withPhone2("34").withNotes("kak dela?");
+            .withNewGroup("test1").withAddress2("Kiev").withPhone2("34").withNotes("kak dela?").withPhoto(photo);
 
     app.contact().create(cont, true);
     app.goTo().StartPage();
@@ -40,4 +43,6 @@ public class ContactCreationTest extends TestBase {
     MatcherAssert.assertThat(after, CoreMatchers.equalTo(
             before.withAdded(cont.withId(after.stream().mapToInt((g) ->g.getId()).max().getAsInt()))));
   }
+
+
 }
