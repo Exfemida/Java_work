@@ -11,9 +11,9 @@ public class ContactDate {
   private String title;
   private String company;
   private String address;
-  private String home;
-  private String mobile;
-  private String work;
+  private String homePhone;
+  private String mobilePhone;
+  private String workPhone;
   private String fax;
   private String email;
   private String email2;
@@ -61,16 +61,16 @@ public class ContactDate {
     return address;
   }
 
-  public String getHome() {
-    return home;
+  public String getHomePhone() {
+    return homePhone;
   }
 
-  public String getMobile() {
-    return mobile;
+  public String getMobilePhone() {
+    return mobilePhone;
   }
 
-  public String getWork() {
-    return work;
+  public String getWorkPhone() {
+    return workPhone;
   }
 
   public String getFax() {
@@ -171,15 +171,15 @@ public class ContactDate {
     return this;
   }
   public ContactDate withHomePhone(String home) {
-    this.home=home;
+    this.homePhone=home;
     return this;
   }
   public ContactDate withMobilePhone(String mobile) {
-    this.mobile=mobile;
+    this.mobilePhone =mobile;
     return this;
   }
   public ContactDate withWorkPhone(String work) {
-    this.work=work;
+    this.workPhone =work;
     return this;
   }
   public ContactDate withFax(String fax) {

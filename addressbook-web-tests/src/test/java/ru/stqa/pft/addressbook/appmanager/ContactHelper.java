@@ -27,9 +27,9 @@ public class ContactHelper extends HelperBase {
     type(By.name("title"),contacts.getTitle());
     type(By.name("company"),contacts.getCompany());
     type(By.name("address"),contacts.getAddress());
-    type(By.name("home"),contacts.getHome());
-    type(By.name("mobile"),contacts.getMobile());
-    type(By.name("work"),contacts.getWork());
+    type(By.name("home"),contacts.getHomePhone());
+    type(By.name("mobile"),contacts.getMobilePhone());
+    type(By.name("work"),contacts.getWorkPhone());
     type(By.name("fax"),contacts.getFax());
     type(By.name("email"),contacts.getEmail());
     type(By.name("email2"),contacts.getEmail2());
@@ -74,7 +74,7 @@ public class ContactHelper extends HelperBase {
   }
   public void initEditContactById(int id) {
   // wd.findElement(By.xpath("//a[@href='edit.php?id=" + id + "']")).click();
-    WebElement checkbox = wd.findElement(By.cssSelector(String.format("input[value=''%s]",id)));
+    WebElement checkbox = wd.findElement(By.cssSelector(String.format("input[value='%s']",id)));
     WebElement row = checkbox.findElement(By.xpath("./../.."));
     List <WebElement> cells = row.findElements(By.tagName("td"));
     cells.get(7).findElement(By.tagName("a")).click();
@@ -122,7 +122,9 @@ public class ContactHelper extends HelperBase {
       int id = Integer.parseInt(cells.get(0).findElement(By.tagName("input")).getAttribute("id"));
       String lastname = cells.get(1).getText();
       String firstname = cells.get(2).getText();
-      contacts.add(new ContactDate().withId(id).withFirstname(firstname).withLastname(lastname));
+      String[] phones = cells.get(5).getText().split("\n");
+      contacts.add(new ContactDate().withId(id).withFirstname(firstname).withLastname(lastname)
+              .withHomePhone(phones[0]).withMobilePhone(phones[1]).withWorkPhone(phones[2]));
     }
     return contacts;
   }
