@@ -8,14 +8,11 @@ public class GroupDate {
   private  String header;
   private  String footer;
 
-
-
-
-
   public GroupDate withId(int id) {
-    this.id = id;
-    return this;
+  this.id = id;
+  return this;
   }
+
   public GroupDate withName(String name) {
     this.name = name;
     return this;
@@ -60,11 +57,11 @@ public class GroupDate {
     if (this == o) return true;
     if (o == null || getClass() != o.getClass()) return false;
     GroupDate groupDate = (GroupDate) o;
-    return id == groupDate.id && Objects.equals(name, groupDate.name);
+    return id == groupDate.id && Objects.equals(name, groupDate.name) && Objects.equals(header, groupDate.header) && Objects.equals(footer, groupDate.footer);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, name);
+    return Objects.hash(id, name, header, footer);
   }
 }
