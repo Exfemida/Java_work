@@ -27,11 +27,10 @@ public class GroupCreationTests extends TestBase {
     app.goTo().groupPage();
     Groups before=app.group().all();
     app.group().create(group);
-    int t=app.group().count();
     assertThat(app.group().count(),equalTo(before.size()+1));
     Groups after=app.group().all();
-    Groups temp=before.withAdded(group.withId(after.stream().mapToInt((g) ->g.getId()).max().getAsInt())); //проверялка
-       assertThat(after, equalTo(
+    group.withHeader(null).withFooter(null); //зануляем для сравнения, т.к на листе групп этих полей нет
+    assertThat(after, equalTo(
             before.withAdded(group.withId(after.stream().mapToInt((g) ->g.getId()).max().getAsInt()))));
   }
 
