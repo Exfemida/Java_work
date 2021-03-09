@@ -26,9 +26,7 @@ public class GroupDateGenerator {
       jCommander.usage();
       return;
     }
-    // int count = Integer.parseInt(args[0]);
-   // File file = new File(args[1]);
-    generator.run();
+   generator.run();
   }
 
   private void run() throws IOException {
