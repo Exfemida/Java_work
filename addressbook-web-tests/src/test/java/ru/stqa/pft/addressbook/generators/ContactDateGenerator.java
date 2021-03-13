@@ -5,7 +5,6 @@ import com.beust.jcommander.Parameter;
 import com.beust.jcommander.ParameterException;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import com.thoughtworks.xstream.XStream;
 import ru.stqa.pft.addressbook.model.ContactDate;
 
 
@@ -79,13 +78,13 @@ public class ContactDateGenerator {
               .withEmail2(String.format("Email2 %s",i))
               .withEmail3(String.format("Email3 %s",i))
               .withHomepage(String.format("Homepage %s",i))
-              .withBday(String.format("Bday %s",i))
-              .withBmonth(String.format("Bmonth %s",i))
-              .withByear(String.format("Byear %s",i))
-              .withAday(String.format("Aday %s",i))
-              .withAmonth(String.format("Amonth %s",i))
-              .withAyear(String.format("Ayear %s",i))
-              .withNewGroup(String.format("NewGroup %s",i))
+              .withBday(String.format("%s",DayGenerator()))
+              .withBmonth(MonthGenerator())
+              .withByear(String.format("%s",YearGenerator()))
+              .withAday(String.format("%s",DayGenerator()))
+              .withAmonth(MonthGenerator())
+              .withAyear(String.format("%s",YearGenerator()))
+              .withNewGroup("test 1")
               .withAddress2(String.format("Address2 %s",i))
               .withPhone2(String.format("Phone2 %s",i))
               .withNotes(String.format("Notes %s",i))
@@ -93,5 +92,22 @@ public class ContactDateGenerator {
     }
     return contacts;
   }
+
+  private int DayGenerator() {
+     int a = (int) (Math.random() * 29);
+     return a;
+  }
+  private String MonthGenerator() {
+    String [] month = {"January","February","March","April","May","June","July","August","September","October","November","December"};
+    int i = (int) (Math.random() * 13);
+    String m= month[i];
+    return m;
+  }
+  private int YearGenerator() {
+    int a = ((int) (Math.random() * 91)) + 1930;
+    return a;
+  }
+
 }
+
 
