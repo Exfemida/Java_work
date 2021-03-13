@@ -32,6 +32,7 @@ public class GroupModificationTests extends TestBase {
     app.group().modify(group);
     MatcherAssert.assertThat(app.group().count(),CoreMatchers.equalTo(before.size()));
     Groups after=app.group().all();
+    group.withHeader(null).withFooter(null); //зануляем для сравнения, т.к на листе групп этих полей нет
     //без сокращения статических методов
     MatcherAssert.assertThat(after, CoreMatchers.equalTo(before.without(modifiedGroup).withAdded(group)));
   }
