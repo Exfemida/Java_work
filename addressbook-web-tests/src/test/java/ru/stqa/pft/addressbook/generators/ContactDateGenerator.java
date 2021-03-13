@@ -62,7 +62,6 @@ public class ContactDateGenerator {
     List <ContactDate> contacts = new ArrayList<ContactDate>();
     for (int i=0; i<count; i++){
       contacts.add(new ContactDate()
-      //        .withId(i)
               .withFirstname(String.format("Firstname %s",i))
               .withMiddlename(String.format("Middlename %s",i))
               .withLastname(String.format("Lastname %s",i))
@@ -84,7 +83,7 @@ public class ContactDateGenerator {
               .withAday(String.format("%s",DayGenerator()))
               .withAmonth(MonthGenerator())
               .withAyear(String.format("%s",YearGenerator()))
-              .withNewGroup("test 1")
+           //   .withNewGroup("test 1")
               .withAddress2(String.format("Address2 %s",i))
               .withPhone2(String.format("Phone2 %s",i))
               .withNotes(String.format("Notes %s",i))

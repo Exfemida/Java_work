@@ -10,6 +10,7 @@ import org.testng.annotations.Test;
 import ru.stqa.pft.addressbook.model.ContactDate;
 import ru.stqa.pft.addressbook.model.Contacts;
 import ru.stqa.pft.addressbook.model.GroupDate;
+import ru.stqa.pft.addressbook.model.Groups;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -45,11 +46,16 @@ public class ContactCreationTest extends TestBase {
 
   @Test (dataProvider = "validContactsFromJson") //(enabled = false)
   public void testCreateNewContact(ContactDate cont) throws Exception {
+    //достаем группы из базы
+    app.goTo().groupPage();
+    Groups groups =app.group().all();
+
     app.goTo().StartPage();
     Contacts before = app.contact().all();
     app.goTo().AddContactPage();
     File photo = new File("src/test/resources/stru.png");
     cont.withPhoto(photo);
+    cont.withNewGroup(groups.stream().map((g) ->g.getName()).findAny().get()); //подставляем любую из имеющихся групп
     app.contact().create(cont, true);
     app.goTo().StartPage();
     Contacts after = app.contact().all();

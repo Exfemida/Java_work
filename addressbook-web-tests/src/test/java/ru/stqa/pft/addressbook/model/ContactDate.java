@@ -28,7 +28,7 @@ public class ContactDate {
   @Expose private String aday;
   @Expose private String amonth;
   @Expose private String ayear;
-  @Expose private String newGroup;
+  private String newGroup;
   @Expose private String address2;
   @Expose private String phone2;
   @Expose private String notes;
