@@ -1,20 +1,17 @@
 package ru.stqa.pft.addressbook.tests;
 
-import org.hamcrest.CoreMatchers;
-import org.hamcrest.MatcherAssert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import ru.stqa.pft.addressbook.model.ContactDate;
 import ru.stqa.pft.addressbook.model.GroupDate;
 
-import java.lang.reflect.Array;
 import java.util.Arrays;
 import java.util.stream.Collectors;
 
 import static org.hamcrest.CoreMatchers.*;
 import static org.hamcrest.MatcherAssert.*;
 
-public class ContactPhoneTest extends TestBase {
+public class ContactPhoneTests extends TestBase {
 
   @BeforeMethod
   public void ensurePreconditions() {
@@ -54,7 +51,7 @@ public class ContactPhoneTest extends TestBase {
   private String mergePhones(ContactDate contact) {
     return Arrays.asList(contact.getHomePhone(),contact.getMobilePhone(),contact.getWorkPhone())
     .stream().filter((s)-> !s.equals(""))
-            .map(ContactPhoneTest::cleaned)
+            .map(ContactPhoneTests::cleaned)
             .collect(Collectors.joining("\n"));
   }
 
