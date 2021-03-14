@@ -17,22 +17,22 @@ public class GroupModificationTests extends TestBase {
 
   @BeforeMethod
   public void ensurePreconditions() {
-    app.goTo().groupPage();
-    if (app.group().all().size()==0) {
+    if (app.db().groups().size()==0){
+      app.goTo().groupPage();
       app.group().create(new GroupDate().withName("test1"));
     }
   }
 
   @Test
   public void testGroupModification() {
-    Groups before=app.group().all();
+    Groups before=app.db().groups();
     GroupDate modifiedGroup = before.iterator().next();
     GroupDate group = new GroupDate()
             .withId(modifiedGroup.getId()).withName("test1").withHeader("test2").withFooter("test4");
+    app.goTo().groupPage();
     app.group().modify(group);
     MatcherAssert.assertThat(app.group().count(),CoreMatchers.equalTo(before.size()));
-    Groups after=app.group().all();
-    group.withHeader(null).withFooter(null); //зануляем для сравнения, т.к на листе групп этих полей нет
+    Groups after=app.db().groups();
     //без сокращения статических методов
     MatcherAssert.assertThat(after, CoreMatchers.equalTo(before.without(modifiedGroup).withAdded(group)));
   }
