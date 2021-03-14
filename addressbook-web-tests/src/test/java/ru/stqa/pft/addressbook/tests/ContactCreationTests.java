@@ -38,27 +38,24 @@ public class ContactCreationTests extends TestBase {
 
     @BeforeMethod
   public void ensurePreconditions() {
-    app.goTo().groupPage();
-    if (app.group().all().size()==0) {
-      app.group().create(new GroupDate().withName("test 1"));
-    }
+      if (app.db().groups().size() == 0) {
+        app.goTo().groupPage();
+        app.group().create(new GroupDate().withName("test1"));
+      }
   }
 
   @Test (dataProvider = "validContactsFromJson") //(enabled = false)
   public void testCreateNewContact(ContactDate cont) throws Exception {
     //достаем группы из базы
-    app.goTo().groupPage();
-    Groups groups =app.group().all();
+    Groups groups =app.db().groups();
 
-    app.goTo().StartPage();
-    Contacts before = app.contact().all();
+    Contacts before = app.db().contacts();
     app.goTo().AddContactPage();
     File photo = new File("src/test/resources/stru.png");
     cont.withPhoto(photo);
     cont.withNewGroup(groups.stream().map((g) ->g.getName()).findAny().get()); //подставляем любую из имеющихся групп
     app.contact().create(cont, true);
-    app.goTo().StartPage();
-    Contacts after = app.contact().all();
+    Contacts after = app.db().contacts();
 
     MatcherAssert.assertThat(after.size(), CoreMatchers.equalTo(before.size()+1));
     MatcherAssert.assertThat(after, CoreMatchers.equalTo(
