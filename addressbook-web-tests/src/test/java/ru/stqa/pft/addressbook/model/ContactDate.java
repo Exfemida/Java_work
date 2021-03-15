@@ -71,26 +71,26 @@ public class ContactDate {
 
   @Transient
   @Column(name="bday")
-  @Type (type="text")
+  @Type (type="int")
   @Expose private String bday;
 
-  @Transient  ///////////
+
   @Column(name="bmonth")
   @Expose private String bmonth;
 
-  @Transient  ///////////
+
   @Column(name="byear")
   @Expose private String byear;
 
-  @Transient  ///////////
-  @Column(name="aday")
+  //@Transient  ///////////
+  @Type (type="integer")
   @Expose private String aday;
 
-  @Transient  ///////////
+
   @Column(name="amonth")
   @Expose private String amonth;
 
-  @Transient  ///////////
+
   @Column(name="ayear")
   @Expose private String ayear;
 
