@@ -41,7 +41,7 @@ public class ContactModificationTests extends TestBase {
     ContactDate modifyContact = before.iterator().next();
     ContactDate oldContact = modifyContact;
     app.contact().initEditContactById(modifyContact.getId());
-    modifyContact = new ContactDate().withId(modifyContact.getId()).withFirstname("Maria").withLastname("Kochina")
+    modifyContact = new ContactDate().withId(modifyContact.getId()).withFirstname("Maria").withMiddlename("Ivanovna").withLastname("Kochina")
             .withNickname("Mashka").withTitle("do not know").withCompany("Rosneft")
             .withAddress("Moskwa, 6").withHomePhone("2222222").withMobilePhone("3333333").withWorkPhone("4444444")
             .withFax("5555555").withEmail("email_1").withEmail2("email_2").withEmail3("email_3")
@@ -54,14 +54,10 @@ public class ContactModificationTests extends TestBase {
     app.contact().fillContactForm(modifyContact, false);
     app.contact().submitContactUpdate();
     Contacts after = app.db().contacts();
-    ContactDate newContact = new ContactDate()
-            .withId(modifyContact.getId())
-            .withFirstname(modifyContact.getFirstname())
-            .withLastname(modifyContact.getLastname());
 
     assertEquals(after.size(), before.size());
     MatcherAssert.assertThat(after, CoreMatchers.equalTo(
-            before.without(oldContact).withAdded(newContact)));
+            before.without(oldContact).withAdded(modifyContact)));
 
   }
 }
