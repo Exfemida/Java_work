@@ -69,8 +69,9 @@ public class ContactDate {
   @Type (type="text")
   @Expose private String homepage;
 
-  @Transient  ///////////
+  @Transient
   @Column(name="bday")
+  @Type (type="text")
   @Expose private String bday;
 
   @Transient  ///////////

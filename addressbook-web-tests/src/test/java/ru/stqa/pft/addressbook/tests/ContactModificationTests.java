@@ -8,6 +8,8 @@ import ru.stqa.pft.addressbook.model.ContactDate;
 import ru.stqa.pft.addressbook.model.Contacts;
 import ru.stqa.pft.addressbook.model.GroupDate;
 
+import java.io.File;
+
 import static org.testng.Assert.assertEquals;
 
 public class ContactModificationTests extends TestBase {
@@ -35,7 +37,7 @@ public class ContactModificationTests extends TestBase {
   public void testContactModification() {
 
     app.goTo().StartPage();
-    Contacts before = app.contact().all();
+    Contacts before = app.db().contacts();
     ContactDate modifyContact = before.iterator().next();
     ContactDate oldContact = modifyContact;
     app.contact().initEditContactById(modifyContact.getId());
@@ -46,10 +48,12 @@ public class ContactModificationTests extends TestBase {
             .withHomepage("mashka.ru").withBday("8").withBmonth("May").withByear("1982")
             .withAday("12").withAmonth("September").withAyear("2004")
             .withNewGroup("test1").withAddress2("Kiev").withPhone2("34").withNotes("kak dela?");
+    File photo = new File("src/test/resources/stru.png");
+    modifyContact.withPhoto(photo);
+
     app.contact().fillContactForm(modifyContact, false);
     app.contact().submitContactUpdate();
-    app.goTo().StartPage();
-    Contacts after = app.contact().all();
+    Contacts after = app.db().contacts();
     ContactDate newContact = new ContactDate()
             .withId(modifyContact.getId())
             .withFirstname(modifyContact.getFirstname())

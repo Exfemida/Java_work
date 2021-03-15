@@ -50,6 +50,7 @@ public class ContactHelper extends HelperBase {
     type(By.name("address2"),contacts.getAddress2());
     type(By.name("phone2"),contacts.getPhone2());
     type(By.name("notes"),contacts.getNotes());
+   // type(By.name("photo"),contacts.getPhoto().getAbsolutePath());
     attach(By.name("photo"),contacts.getPhoto());
   }
 
