@@ -69,27 +69,20 @@ public class ContactDate {
   @Type (type="text")
   @Expose private String homepage;
 
-  @Transient
-  @Column(name="bday")
-  @Type (type="int")
-  @Expose private String bday;
-
+  @Column(name="bday", columnDefinition = "TINYINT")
+  @Expose private int bday;
 
   @Column(name="bmonth")
   @Expose private String bmonth;
 
-
   @Column(name="byear")
   @Expose private String byear;
 
-  //@Transient  ///////////
-  @Type (type="integer")
-  @Expose private String aday;
-
+  @Column(name="aday", columnDefinition = "TINYINT")
+  @Expose private int aday;
 
   @Column(name="amonth")
   @Expose private String amonth;
-
 
   @Column(name="ayear")
   @Expose private String ayear;
@@ -179,7 +172,7 @@ public class ContactDate {
     return homepage;
   }
 
-  public String getBday() {
+  public int getBday() {
     return bday;
   }
 
@@ -191,7 +184,7 @@ public class ContactDate {
     return byear;
   }
 
-  public String getAday() {
+  public int getAday() {
     return aday;
   }
 
@@ -300,8 +293,8 @@ public class ContactDate {
     this.homepage=homepage;
     return this;
   }
-  public ContactDate withBday(String bday) {
-    this.bday=bday;
+  public ContactDate withBday(String bday) {     //    пока отдаем String!!!!
+    this.bday=Integer.parseInt(bday);
     return this;
   }
   public ContactDate withBmonth(String bmonth) {
@@ -312,8 +305,8 @@ public class ContactDate {
     this.byear=byear;
     return this;
   }
-  public ContactDate withAday(String aday) {
-    this.aday=aday;
+  public ContactDate withAday(String aday) {    //    пока отдаем String!!!!
+    this.aday=Integer.parseInt(aday);
     return this;
   }
   public ContactDate withAmonth(String amonth) {

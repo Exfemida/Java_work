@@ -35,10 +35,10 @@ public class ContactHelper extends HelperBase {
     type(By.name("email2"),contacts.getEmail2());
     type(By.name("email3"),contacts.getEmail3());
     type(By.name("homepage"),contacts.getHomepage());
-    select(By.name("bday"), contacts.getBday());
+    select(By.name("bday"), ""+contacts.getBday());
     select(By.name("bmonth"), contacts.getBmonth());
     type(By.name("byear"),contacts.getByear());
-    select(By.name("aday"), contacts.getAday());
+    select(By.name("aday"), (""+contacts.getAday()));
     select(By.name("amonth"), contacts.getAmonth());
     type(By.name("ayear"),contacts.getAyear());
 
