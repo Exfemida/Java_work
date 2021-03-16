@@ -47,7 +47,7 @@ public class TestBase {
     logger.info("Stop test " + m.getName() + "with parametrs " + Arrays.asList(p));
   }
 
-  public void verifyGroupListInUI() {
+  public void verifyGroupListInUA() {
     if (Boolean.getBoolean("verifyUI")) {
       Groups dbGroups = app.db().groups();
       Groups uaGroups = app.group().all();

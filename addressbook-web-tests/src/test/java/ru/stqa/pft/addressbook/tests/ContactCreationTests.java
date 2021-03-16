@@ -53,7 +53,8 @@ public class ContactCreationTests extends TestBase {
     app.goTo().AddContactPage();
     File photo = new File("src/test/resources/stru.png");
     cont.withPhoto(photo);
-    cont.withNewGroup(groups.stream().map((g) ->g.getName()).findAny().get()); //подставляем любую из имеющихся групп
+    cont.inGroup(groups.iterator().next());
+//    cont.withNewGroup(groups.stream().map((g) ->g.getName()).findAny().get()); //подставляем любую из имеющихся групп
     app.contact().create(cont, true);
     Contacts after = app.db().contacts();
 

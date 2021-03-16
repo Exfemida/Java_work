@@ -4,6 +4,7 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import ru.stqa.pft.addressbook.model.ContactDate;
 import ru.stqa.pft.addressbook.model.GroupDate;
+import ru.stqa.pft.addressbook.model.Groups;
 
 import java.util.Arrays;
 import java.util.stream.Collectors;
@@ -16,11 +17,12 @@ public class ContactPhoneTests extends TestBase {
   @BeforeMethod
   public void ensurePreconditions() {
     app.goTo().StartPage();
-    if (app.contact().all().size()==0) {          //проверка наличия в базе созданных контактов
-      app.goTo().groupPage();                    //проверка наличия в базе созданных групп
-      if (app.group().all().size()==0) {
+    if (app.db().contacts().size()==0) {
+      if (app.db().groups().size()==0) {
+        app.goTo().groupPage();
         app.group().create(new GroupDate().withName("test2"));
       }
+      Groups groups = app.db().groups();
       app.goTo().AddContactPage();
       app.contact().create(new ContactDate()
               .withFirstname("Maria").withMiddlename("Sergeevna").withLastname("Ivanova")
@@ -29,7 +31,9 @@ public class ContactPhoneTests extends TestBase {
               .withFax("5555555").withEmail("email_1").withEmail2("email_2").withEmail3("email_3")
               .withHomepage("mashka.ru").withBday("8").withBmonth("May").withByear("1982")
               .withAday("12").withAmonth("September").withAyear("2004")
-              .withNewGroup("test1").withAddress2("Kiev").withPhone2(null).withNotes("kak dela?"), true);
+              .inGroup(groups.iterator().next())
+//              .withNewGroup("test1")
+              .withAddress2("Kiev").withPhone2(null).withNotes("kak dela?"), true);
       app.goTo().StartPage();
     }
 

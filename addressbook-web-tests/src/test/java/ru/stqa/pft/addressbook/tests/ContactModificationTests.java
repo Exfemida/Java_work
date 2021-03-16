@@ -31,8 +31,9 @@ public class ContactModificationTests extends TestBase {
               .withHomepage("mashka.ru").withBday("8").withBmonth("May").withByear("1982")
               .withAday("12").withAmonth("September").withAyear("2004")
               .withAddress2("Kiev").withPhone2("34").withNotes("kak dela?")
-              .withPhoto(photo)
-              .withNewGroup(groups.stream().map((g) ->g.getName()).findAny().get()), true);
+//                      .withNewGroup(groups.stream().map((g) ->g.getName()).findAny().get())
+                      .withPhoto(photo), true);
+
     }
   }
 
@@ -40,6 +41,7 @@ public class ContactModificationTests extends TestBase {
   public void testContactModification() {
 
     app.goTo().StartPage();
+    Groups groups = app.db().groups();
     Contacts before = app.db().contacts();
     ContactDate modifyContact = before.iterator().next();
     ContactDate oldContact = modifyContact;
@@ -50,7 +52,9 @@ public class ContactModificationTests extends TestBase {
             .withFax("5555555").withEmail("email_1").withEmail2("email_2").withEmail3("email_3")
             .withHomepage("mashka.ru").withBday("8").withBmonth("May").withByear("1982")
             .withAday("12").withAmonth("September").withAyear("2004")
-            .withNewGroup("test1").withAddress2("Kiev").withPhone2("34").withNotes("kak dela?");
+            .inGroup(groups.iterator().next())
+//            .withNewGroup("test1")
+            .withAddress2("Kiev").withPhone2("34").withNotes("kak dela?");
     File photo = new File("src/test/resources/stru.png");
     modifyContact.withPhoto(photo);
 

@@ -33,8 +33,10 @@ public class ContactDeletionTests extends TestBase {
               .withHomepage("mashka.ru").withBday("8").withBmonth("May").withByear("1982")
               .withAday("12").withAmonth("September").withAyear("2004")
               .withAddress2("Kiev").withPhone2("34").withNotes("kak dela?")
-              .withPhoto(photo)
-              .withNewGroup(groups.stream().map((g) -> g.getName()).findAny().get()), true);
+              .inGroup(groups.iterator().next())
+//                      .withNewGroup(groups.stream().map((g) -> g.getName()).findAny().get())
+              .withPhoto(photo), true);
+
     }
     app.goTo().StartPage();
   }

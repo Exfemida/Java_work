@@ -2,11 +2,15 @@ package ru.stqa.pft.addressbook.tests;
 
 import org.hamcrest.CoreMatchers;
 import org.hamcrest.MatcherAssert;
+import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import ru.stqa.pft.addressbook.model.GroupDate;
 import ru.stqa.pft.addressbook.model.Groups;
 
+import java.util.Set;
+
+import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.MatcherAssert.assertThat;
 
 public class GroupModificationTests extends TestBase {
@@ -33,7 +37,7 @@ public class GroupModificationTests extends TestBase {
     //без сокращения статических методов
     MatcherAssert.assertThat(after, CoreMatchers.equalTo(before.without(modifiedGroup).withAdded(group)));
 
-    verifyGroupListInUI();
+    verifyGroupListInUA();
   }
 
 
