@@ -96,6 +96,10 @@ public class ContactHelper extends HelperBase {
     click(By.name("update"));
   }
 
+  private void submitAddContact(int id) {
+    wd.findElement(By.xpath("//a[@href='./?group=" + id +"']")).click();
+  }
+
   public boolean isThereAContact() {
     return isElementPresent(By.xpath("//img[@alt='Edit']"));
   }
@@ -114,11 +118,10 @@ public class ContactHelper extends HelperBase {
     selectContactById(contact.getId());
     select(By.name("to_group"), ""+newGroupId.getName());
     addToGroup();
-
-
+    submitAddContact(newGroupId.getId());
   }
 
-  public List<ContactDate> getContactsList() {
+    public List<ContactDate> getContactsList() {
     List<ContactDate> listOfContacts = new ArrayList<ContactDate>();
     List<WebElement> listOfrow = wd.findElements(By.cssSelector("tr"));
     listOfrow.remove(0);
