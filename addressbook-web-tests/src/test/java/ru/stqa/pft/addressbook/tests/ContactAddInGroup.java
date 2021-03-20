@@ -39,7 +39,9 @@ public class ContactAddInGroup extends TestBase {
         app.group().create(new GroupDate().withName("nametest 1").withHeader("headertest 1").withFooter("footertest 1"));
       }
     }
-    
+
+    app.contact().addInGroup(modifyContact,newGroupId);
+    newGroupId=0;
 
 
   }

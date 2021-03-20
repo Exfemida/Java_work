@@ -104,6 +104,10 @@ public class ContactHelper extends HelperBase {
     closeAlertDelete();
   }
 
+  public void addInGroup(ContactDate contact, int newGroupId) {
+    selectContactById(contact.getId());
+  }
+
   public List<ContactDate> getContactsList() {
     List<ContactDate> listOfContacts = new ArrayList<ContactDate>();
     List<WebElement> listOfrow = wd.findElements(By.cssSelector("tr"));
@@ -153,6 +157,8 @@ public class ContactHelper extends HelperBase {
             .withHomePhone(home).withMobilePhone(mobile).withWorkPhone(work).
                     withEmail(email).withEmail2(email2).withEmail3(email3).withAddress(address);
   }
+
+
 }
 
 
