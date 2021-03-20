@@ -5,6 +5,7 @@ import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
 import ru.stqa.pft.addressbook.model.ContactDate;
 import ru.stqa.pft.addressbook.model.Contacts;
+import ru.stqa.pft.addressbook.model.GroupDate;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -70,6 +71,11 @@ public class ContactHelper extends HelperBase {
     click(By.xpath("//input[@value='Delete']"));
   }
 
+  public void addToGroup() {
+    click(By.xpath("//input[@value='Add to']"));
+  }
+
+
   public void closeAlertDelete() {
     wd.switchTo().alert().accept();
   }
@@ -104,8 +110,12 @@ public class ContactHelper extends HelperBase {
     closeAlertDelete();
   }
 
-  public void addInGroup(ContactDate contact, int newGroupId) {
+  public void addToGroup(ContactDate contact, GroupDate newGroupId) {
     selectContactById(contact.getId());
+    select(By.name("to_group"), ""+newGroupId.getName());
+    addToGroup();
+
+
   }
 
   public List<ContactDate> getContactsList() {

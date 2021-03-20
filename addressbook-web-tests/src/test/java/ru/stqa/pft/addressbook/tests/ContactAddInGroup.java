@@ -1,7 +1,5 @@
 package ru.stqa.pft.addressbook.tests;
 
-import org.hamcrest.CoreMatchers;
-import org.hamcrest.MatcherAssert;
 import org.testng.annotations.Test;
 import ru.stqa.pft.addressbook.model.ContactDate;
 import ru.stqa.pft.addressbook.model.Contacts;
@@ -17,9 +15,12 @@ public class ContactAddInGroup extends TestBase {
     ContactDate modifyContact = before.iterator().next(); //выбрали контакт который будем добавлять в группу
     System.out.println(modifyContact.getGroups());
 
-    int newGroupId = 0;
+ //   int newGroupId = 0;
+ //   String newGroupName=null;
+    GroupDate newGroupForAdd=new GroupDate();
+
     //если группы из базы нет в списке групп контакта, то будем добавлять контакт в эту группу
-    while (newGroupId == 0) {
+    while (newGroupForAdd.getName()== null) {
       Groups groups = app.db().groups(); //получили все группы из базы
       for (GroupDate group : groups) {
         boolean i = false;
@@ -30,18 +31,21 @@ public class ContactAddInGroup extends TestBase {
         }
         if (i == false) {
           System.out.println(group.getId() + " berem");  //удалить
-          newGroupId = group.getId();
+          newGroupForAdd.withId(group.getId());
+          newGroupForAdd.withName(group.getName());
         }
       }
       // если свободной группы нет, создаем ее
-      if (newGroupId == 0) {
+      if (newGroupForAdd.getName()== null) {
         app.goTo().groupPage();
-        app.group().create(new GroupDate().withName("nametest 1").withHeader("headertest 1").withFooter("footertest 1"));
+        newGroupForAdd.withName("nametest 1").withHeader("headertest 1").withFooter("footertest 1");
+        app.group().create(newGroupForAdd);
       }
     }
 
-    app.contact().addInGroup(modifyContact,newGroupId);
-    newGroupId=0;
+    app.goTo().StartPage();
+    app.contact().addToGroup(modifyContact,newGroupForAdd);
+  //  newGroupForAdd.getId()=0;
 
 
   }
