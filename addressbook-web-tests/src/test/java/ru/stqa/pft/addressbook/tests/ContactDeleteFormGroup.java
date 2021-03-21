@@ -16,11 +16,11 @@ public class ContactDeleteFormGroup extends TestBase {
 
   @BeforeMethod
   public void ensurePreconditions() {
+    if (app.db().groups().size() == 0) {
+      app.goTo().groupPage();
+      app.group().create(new GroupDate().withName("test2"));
+    }
     if (app.db().contacts().size() == 0) {
-      if (app.db().groups().size() == 0) {
-        app.goTo().groupPage();
-        app.group().create(new GroupDate().withName("test2"));
-      }
       File photo = new File("src/test/resources/stru.png");
       Groups groups = app.db().groups();
       app.goTo().AddContactPage();
@@ -33,9 +33,7 @@ public class ContactDeleteFormGroup extends TestBase {
               .withAday("12").withAmonth("September").withAyear("2004")
               .withAddress2("Kiev").withPhone2("34").withNotes("kak dela?")
               .inGroup(groups.iterator().next())
-//                      .withNewGroup(groups.stream().map((g) -> g.getName()).findAny().get())
               .withPhoto(photo), true);
-
     }
     app.goTo().StartPage();
   }
@@ -47,7 +45,7 @@ public class ContactDeleteFormGroup extends TestBase {
     GroupDate modifyGroup = new GroupDate();
     ContactDate modifyContact = new ContactDate();
     ContactDate modContact = new ContactDate();
-    int modContactId;
+    int modContactId = 0;
     int modGroupId = 0;
 
     Contacts contact = app.db().contacts();  //получили все контакты из базы
@@ -56,10 +54,12 @@ public class ContactDeleteFormGroup extends TestBase {
     for (ContactDate cont : contact) {
       groups = cont.getGroups();
       modContact = cont;
+      modContactId=cont.getId();
       if (cont.getGroups().size() != 0) {
         modifyGroup = cont.getGroups().iterator().next();
         modGroupId = cont.getGroups().iterator().next().getId();
         modifyContact = cont;
+        modContactId=cont.getId();
       }
     }
     if (modGroupId == 0) {
@@ -70,14 +70,13 @@ public class ContactDeleteFormGroup extends TestBase {
       app.contact().addToGroup(modifyContact, modifyGroup);
 
     }
-    ContactDate beforeContact = modifyContact;
+    Groups oldGroups = modifyContact.getGroups();
     app.contact().deleteFromGroup(modifyContact, modifyGroup);
 
     //сравнение
     contact = app.db().contacts();
-    //здесь нужно получить контакт по Id modifyContact
-    //MatcherAssert.assertThat(beforeContact, CoreMatchers.equalTo(тут обновленный контакт inGroup(modifyGroup));
-
-
+    int finalModContactId = modContactId;
+    Groups newGroups=contact.stream().filter(c->c.getId()== finalModContactId).findFirst().get().inGroup(modifyGroup).getGroups();
+    MatcherAssert.assertThat (oldGroups, CoreMatchers.equalTo(newGroups));
   }
 }
