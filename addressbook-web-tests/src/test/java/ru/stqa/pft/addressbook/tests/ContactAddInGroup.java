@@ -96,7 +96,7 @@ public class ContactAddInGroup extends TestBase {
     Groups old = oldcontact.inGroup(newGroupForAdd).getGroups(); //контакт "до"+добавленная группа
 
     Contacts temp = app.db().contacts();
-    ContactDate nev = temp.stream().findFirst(oldcontact ->oldcontact.getId().equals(givenId)).get();
+ //  ContactDate nev = temp.stream().findFirst(oldcontact ->oldcontact.getId().equals(givenId)).get();
 
     //ContactDate byId = temp.stream().findFirst(contact ->contact.getId().equals(givenId)).get();
 
