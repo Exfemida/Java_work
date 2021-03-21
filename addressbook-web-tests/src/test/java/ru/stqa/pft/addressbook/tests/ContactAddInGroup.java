@@ -1,5 +1,7 @@
 package ru.stqa.pft.addressbook.tests;
 
+import org.hamcrest.CoreMatchers;
+import org.hamcrest.MatcherAssert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import ru.stqa.pft.addressbook.model.ContactDate;
@@ -8,6 +10,7 @@ import ru.stqa.pft.addressbook.model.GroupDate;
 import ru.stqa.pft.addressbook.model.Groups;
 
 import java.io.File;
+
 
 public class ContactAddInGroup extends TestBase {
 
@@ -39,6 +42,7 @@ public class ContactAddInGroup extends TestBase {
 
   @Test
   public void testAddContactInGroup() throws Exception {
+
     Contacts contact = app.db().contacts();  //получили все контакты из базы
     ContactDate modifyContact = contact.iterator().next(); //выбрали контакт который будем добавлять в группу
     ContactDate oldcontact = modifyContact; //контакт до добавления группы
@@ -87,6 +91,17 @@ public class ContactAddInGroup extends TestBase {
     //добавляем контакт в группу
     app.goTo().StartPage();
     app.contact().addToGroup(modifyContact, newGroupForAdd);
+
+    oldcontact.getGroups();
+    Groups old = oldcontact.inGroup(newGroupForAdd).getGroups();
+
+    Contacts temp = app.db().contacts();
+
+//    Groups nev = temp.stream().map((g) ->g.getGroups());
+
+
+    MatcherAssert.assertThat(oldcontact, CoreMatchers.equalTo(oldcontact.inGroup(newGroupForAdd)));
+
 
   }
 }
