@@ -92,15 +92,16 @@ public class ContactAddInGroup extends TestBase {
     app.goTo().StartPage();
     app.contact().addToGroup(modifyContact, newGroupForAdd);
 
-    oldcontact.getGroups();
-    Groups old = oldcontact.inGroup(newGroupForAdd).getGroups();
+    //сравнение групп контакта до и после
+    Groups old = oldcontact.inGroup(newGroupForAdd).getGroups(); //контакт "до"+добавленная группа
 
     Contacts temp = app.db().contacts();
+    ContactDate nev = temp.stream().findFirst(oldcontact ->oldcontact.getId().equals(givenId)).get();
 
-//    Groups nev = temp.stream().map((g) ->g.getGroups());
+    //ContactDate byId = temp.stream().findFirst(contact ->contact.getId().equals(givenId)).get();
 
 
-    MatcherAssert.assertThat(oldcontact, CoreMatchers.equalTo(oldcontact.inGroup(newGroupForAdd)));
+    //MatcherAssert.assertThat(old, CoreMatchers.equalTo(---)));
 
 
   }
