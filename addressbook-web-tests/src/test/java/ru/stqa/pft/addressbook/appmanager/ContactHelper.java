@@ -75,6 +75,10 @@ public class ContactHelper extends HelperBase {
     click(By.xpath("//input[@value='Add to']"));
   }
 
+  public void deleteFromGroup() {
+    click(By.xpath("//input[@name='remove']"));
+  }
+
 
   public void closeAlertDelete() {
     wd.switchTo().alert().accept();
@@ -119,6 +123,13 @@ public class ContactHelper extends HelperBase {
     select(By.name("to_group"), ""+newGroupId.getName());
     addToGroup();
     submitAddContact(newGroupId.getId());
+  }
+
+  public void deleteFromGroup(ContactDate contact, GroupDate group) {
+    select(By.name("group"), ""+group.getName());
+    selectContactById(contact.getId());
+    deleteFromGroup();
+
   }
 
     public List<ContactDate> getContactsList() {
@@ -170,6 +181,7 @@ public class ContactHelper extends HelperBase {
             .withHomePhone(home).withMobilePhone(mobile).withWorkPhone(work).
                     withEmail(email).withEmail2(email2).withEmail3(email3).withAddress(address);
   }
+
 
 
 }
