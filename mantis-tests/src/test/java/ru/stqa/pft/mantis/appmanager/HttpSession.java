@@ -1,11 +1,18 @@
 package ru.stqa.pft.mantis.appmanager;
 
+import org.apache.http.client.entity.UrlEncodedFormEntity;
+import org.apache.http.client.methods.CloseableHttpResponse;
+import org.apache.http.client.methods.HttpPost;
+import org.apache.http.impl.client.CloseableHttpClient;
+import org.apache.http.impl.client.HttpClients;
+import org.apache.http.impl.client.LaxRedirectStrategy;
+import org.apache.http.message.BasicNameValuePair;
+import org.apache.http.util.EntityUtils;
 import org.omg.CORBA.NameValuePair;
-import sun.net.www.http.HttpClient;
-
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+
 
 public class HttpSession {
   private CloseableHttpClient httpclient;
@@ -18,7 +25,7 @@ public class HttpSession {
 
   public  boolean login(String username, String password) throws IOException{
     HttpPost post=new HttpPost (app.getProperty("web.baseUrl")+"/login.php");
-    List<NameValuePair> params=new ArrayList<>();
+    List<NameValuePair> params=new ArrayList<NameValuePair>();
     params.add(new BasicNameValuePair("username",username));
     params.add(new BasicNameValuePair("password",password));
     params.add(new BasicNameValuePair("secure_session","on"));
@@ -26,7 +33,7 @@ public class HttpSession {
     post.setEntity(new UrlEncodedFormEntity(params));
     CloseableHttpResponse response=httpclient.execute(post);
     String body=geTextForm(response);
-    return body.contains(String.format("<span class=\"italic\">%s<\span>",username));
+    return body.contains(String.format("<span class=\"italic\">%s</span>",username));
   }
 
   private String geTextForm(CloseableHttpResponse response) throws  IOException{
