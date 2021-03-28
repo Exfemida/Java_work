@@ -2,9 +2,11 @@ package ru.stqa.pft.mantis.appmanager;
 
 import org.subethamail.wiser.Wiser;
 import org.subethamail.wiser.WiserMessage;
+import ru.stqa.pft.mantis.model.MailMessage;
 import javax.mail.MessagingException;
 import javax.mail.internet.MimeMessage;
 import java.io.IOException;
+import java.util.List;
 import java.util.stream.Collectors;
 
 public class MailHelper {
@@ -16,9 +18,9 @@ public class MailHelper {
     wiser=new Wiser();
   }
 
-  public List <MailMessage> waitForMail (int count, long timeout) throws MessagingException, IOException {
+  public List<MailMessage> waitForMail (int count, long timeout) throws MessagingException, IOException {
     long start = System.currentTimeMillis();
-    while (System.currentTimeMills() < start + timeout) {
+    while (System.currentTimeMillis() < start + timeout) {
       if (wiser.getMessages().size() >= count) {
         return wiser.getMessages().stream().map((m) -> toModelMail(m)).collect(Collectors.toList());
       }
