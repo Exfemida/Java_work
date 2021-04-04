@@ -40,8 +40,8 @@ public class JamesHelper {
 
   public void createUser(String name, String passwd){
     initTelnetSession();
-    write("adduser" + name + " "+passwd);
-    String result=readUntil("User" + name + " added");
+    write("adduser " + name + " "+passwd);
+    String result=readUntil("User " + name + " added");
     closeTelnetSession();
   }
 
@@ -76,7 +76,7 @@ public class JamesHelper {
     readUntil("Password:");
     write(password);
 
-    readUntil("Welcome" + login + ". HELP for a list of commands");
+    readUntil("Welcome " + login + ". HELP for a list of commands");
   }
 
   private String readUntil(String pattern){

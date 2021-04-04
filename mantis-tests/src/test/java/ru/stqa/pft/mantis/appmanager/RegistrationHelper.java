@@ -13,6 +13,7 @@ public class RegistrationHelper extends HelperBase{
     type(By.name("username"), userName);
     type(By.name("email"), email);
     click(By.cssSelector("input[value='Signup']"));
+   // click(By.cssSelector("input[class='width-40 pull-right btn btn-success btn-inverse bigger-110']"));
   }
 
   public void finish(String confirmationLink, String password) {
