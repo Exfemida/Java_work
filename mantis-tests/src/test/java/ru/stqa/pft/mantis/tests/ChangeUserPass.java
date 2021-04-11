@@ -50,9 +50,14 @@ public class ChangeUserPass extends TestBase {
     session.getTransaction().commit();
     session.close();
 
+    Integer userId = 1;
     for (UsersDate user : result) {
-      System.out.println(user.toString());
-      System.out.println(user.getId());
+      if (!(user.getUsername().equals("administrator"))){
+        userId=user.getId();
+      }
     }
+    System.out.println(userId+"");
+
+
   }
 }
