@@ -9,10 +9,17 @@ import java.util.Set;
 public class Users extends ForwardingSet<UsersDate> {
   private Set<UsersDate> delegate;
 
+  public Users(Users users) {
+    this.delegate=new HashSet<UsersDate>(users.delegate);
+  }
+
+  public Users() {
+    this.delegate=new HashSet<UsersDate>();
+  }
+
   public Users(Collection<UsersDate> users) {
     this.delegate=new HashSet<UsersDate>(users);
   }
-
 
 
   @Override
