@@ -29,7 +29,6 @@ public class DbHelper {
     Session session = sessionFactory.openSession();
     session.beginTransaction();
     List<UsersDate> result = session.createQuery( "from UsersDate" ).list();
-
     session.getTransaction().commit();
     session.close();
     return new Users(result);
