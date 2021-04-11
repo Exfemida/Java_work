@@ -20,16 +20,13 @@ public class UsersDate {
   private int id=Integer.MAX_VALUE;
 
   @Column(name = "username")
-  @Type(type="text")
   private  String username;
 
   @Column(name = "email")
-  @Type(type="email")
   private  String email;
 
   @Column(name = "password")
-  @Type(type="password")
-  private  String password;
+   private  String password;
 
   public UsersDate withId(int id) {
     this.id = id;
@@ -49,5 +46,21 @@ public class UsersDate {
   public UsersDate withPassword(String password) {
     this.password = password;
     return this;
+  }
+
+  public int getId() {
+    return id;
+  }
+
+  public String getUsername() {
+    return username;
+  }
+
+  public String getEmail() {
+    return email;
+  }
+
+  public String getPassword() {
+    return password;
   }
 }

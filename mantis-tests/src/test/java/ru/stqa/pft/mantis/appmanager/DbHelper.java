@@ -9,6 +9,7 @@ import ru.stqa.pft.mantis.model.Users;
 import ru.stqa.pft.mantis.model.UsersDate;
 
 
+import java.sql.*;
 import java.util.List;
 
 public class DbHelper {
@@ -23,6 +24,7 @@ public class DbHelper {
 
     sessionFactory = new MetadataSources( registry ).buildMetadata().buildSessionFactory();
   }
+
   public Users users(){
     Session session = sessionFactory.openSession();
     session.beginTransaction();
@@ -32,4 +34,5 @@ public class DbHelper {
     session.close();
     return new Users(result);
   }
+
  }
