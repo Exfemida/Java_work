@@ -22,12 +22,15 @@ public class ChangeUserPass extends TestBase {
 
   @Test
   public void ChangeUserPassword() throws SQLException, IOException, MessagingException {
+    //зайти под администраторм
     String userName = "administrator";
     String password = "root";
     app.changePass().start(userName, password);
 
+    //получить из базы список пользователей
     List<UsersDate> result = app.changePass().getUsersData();
 
+    //выбрать последнего исключая администратора
     Integer userId = 1;
     for (UsersDate user : result) {
       if (!(user.getUsername().equals("administrator"))) {
@@ -36,6 +39,7 @@ public class ChangeUserPass extends TestBase {
     }
     System.out.println(userId + "");
 
+    //перейти на сайте в список пользователей
     app.changePass().goToManagerUsers();
 
   }
