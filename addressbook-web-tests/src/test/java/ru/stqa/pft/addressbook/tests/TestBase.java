@@ -37,26 +37,26 @@ public class TestBase {
  //   return app;
  // }
 
-  @BeforeMethod
-  public void logTestStart(Method m, Object[] p) {
-    logger.info("Start test " + m.getName() + "with parametrs " + Arrays.asList(p));
-  }
+//  @BeforeMethod
+//  public void logTestStart(Method m, Object[] p) {
+//    logger.info("Start test " + m.getName() + "with parametrs " + Arrays.asList(p));
+//  }
 
-  @AfterMethod (alwaysRun=true)
-  public void logTestStop(Method m, Object[] p){
-    logger.info("Stop test " + m.getName() + "with parametrs " + Arrays.asList(p));
-  }
+//  @AfterMethod (alwaysRun=true)
+//  public void logTestStop(Method m, Object[] p){
+//    logger.info("Stop test " + m.getName() + "with parametrs " + Arrays.asList(p));
+//  }
 
-  public void verifyGroupListInUA() {
-    if (Boolean.getBoolean("verifyUI")) {
-      Groups dbGroups = app.db().groups();
-      Groups uaGroups = app.group().all();
-      MatcherAssert.assertThat(uaGroups, CoreMatchers.equalTo(dbGroups.stream()
-              .map((g) -> new GroupDate().withId(g.getId()).withName(g.getName()))
-              .collect(Collectors.toSet())));
-    }
+//  public void verifyGroupListInUA() {
+//    if (Boolean.getBoolean("verifyUI")) {
+//      Groups dbGroups = app.db().groups();
+//      Groups uaGroups = app.group().all();
+//      MatcherAssert.assertThat(uaGroups, CoreMatchers.equalTo(dbGroups.stream()
+//              .map((g) -> new GroupDate().withId(g.getId()).withName(g.getName()))
+//              .collect(Collectors.toSet())));
+//    }
 
 
-  }
+//  }
 
 }
