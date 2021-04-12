@@ -30,17 +30,26 @@ public class ChangeUserPass extends TestBase {
     //получить из базы список пользователей
     List<UsersDate> result = app.changePass().getUsersData();
 
-    //выбрать последнего исключая администратора
-    Integer userId = 1;
+    //выбрать любого исключая администратора
+    Integer managerId = 1;
+    String managerName = null;
+    String managerEmail=null;
     for (UsersDate user : result) {
       if (!(user.getUsername().equals("administrator"))) {
-        userId = user.getId();
+        managerId = user.getId();
+        managerName=user.getUsername();
+        managerEmail=user.getEmail();
       }
     }
-    System.out.println(userId + "");
+    System.out.println(managerId + "" + managerName);
 
-    //перейти на сайте в список пользователей
+    //перейти на сайте в список пользователей, выбрать жертву и сбросить у нее пароль
     app.changePass().goToManagerUsers();
+    app.changePass().selectManager(managerId);
+    app.changePass().managerResetPassword(managerEmail);
+
+    //на сервере получить письмо со ссылкой
+    
 
   }
 

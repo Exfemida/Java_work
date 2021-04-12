@@ -28,8 +28,16 @@ public class ChangePassHelper extends HelperBase{
 
   public void goToManagerUsers() {
     wd.findElement(By.xpath("//a[@href='/mantisbt-1.2.20/manage_user_page.php']")).click();
-
   }
+
+  public void selectManager(Integer id) {
+    wd.findElement(By.xpath("//a[@href='manage_user_edit_page.php?user_id=" + id +"']")).click();
+  }
+
+  public void managerResetPassword(String email) {
+    click(By.cssSelector("input[value='Reset Password']"));
+  }
+
 
 
 
