@@ -47,7 +47,7 @@ public class JamesHelper {
 
   public void deleteUser(String name){
     initTelnetSession();
-    write("deluser" + name);
+    write("deluser " + name);
     String result = readUntil("User " + name + " deleted");
     closeTelnetSession();
   }
@@ -126,6 +126,7 @@ public class JamesHelper {
   }
 
   private Folder openInbox(String username, String password) throws MessagingException{
+    mailserver = app.getProperty("mailserver.host"); //добавлена строка
     store=mailSession.getStore("pop3");
     store.connect(mailserver, username, password);
     Folder folder = store.getDefaultFolder().getFolder("INBOX");
@@ -133,11 +134,11 @@ public class JamesHelper {
     return folder;
   }
 
-  public List<MailMessage> waitForMail(String username, String password, long timeout) throws MessagingException{
+  public List<MailMessage> waitForMail(String username, String password, long timeout, Integer boxSize) throws MessagingException{
     long now =System.currentTimeMillis();
     while (System.currentTimeMillis()<now+timeout){
       List<MailMessage> allMail=getAllMail(username, password);
-      if (allMail.size()>0){
+      if (allMail.size()>boxSize){
         return allMail;
       }
       try{
