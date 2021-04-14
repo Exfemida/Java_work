@@ -134,11 +134,11 @@ public class JamesHelper {
     return folder;
   }
 
-  public List<MailMessage> waitForMail(String username, String password, long timeout, Integer boxSize) throws MessagingException{
+  public List<MailMessage> waitForMail(String username, String password, long timeout) throws MessagingException{
     long now =System.currentTimeMillis();
     while (System.currentTimeMillis()<now+timeout){
       List<MailMessage> allMail=getAllMail(username, password);
-      if (allMail.size()>boxSize){
+      if (allMail.size()>0){
         return allMail;
       }
       try{

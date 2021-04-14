@@ -1,31 +1,15 @@
 package ru.stqa.pft.mantis.tests;
 
-import org.hibernate.Session;
-import org.hibernate.boot.MetadataSources;
-import org.hibernate.boot.registry.StandardServiceRegistry;
-import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
-import org.openqa.selenium.By;
-import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import ru.lanwen.verbalregex.VerbalExpression;
 import ru.stqa.pft.mantis.model.MailMessage;
 import ru.stqa.pft.mantis.model.UsersDate;
-import org.hibernate.SessionFactory;
-
-import javax.mail.MessagingException;
-import java.io.IOException;
-import java.sql.*;
-import java.util.Comparator;
 import java.util.List;
-
-import static java.util.Comparator.reverseOrder;
-import static org.testng.AssertJUnit.assertTrue;
-
 
 public class ChangeUserPass extends TestBase {
 
   @Test
-  public void ChangeUserPassword() throws SQLException, IOException, MessagingException {
+  public void ChangeUserPassword() throws Exception {
     //зайти под администраторм
     String userName = "administrator";
     String password = "root";
@@ -47,26 +31,28 @@ public class ChangeUserPass extends TestBase {
     }
     System.out.println(managerId + "" + managerName);
 
-
-   //
-   // app.james().deleteUser(managerName);
-   // app.james().createUser(managerName, "password");
-   Integer boxSize=(app.james().waitForMail(managerName,"password", 60000, 0)).size();
+   //очистить содержимое почтового ящика
+    app.james().drainEmail(managerName, "password");
 
     //перейти на сайте в список пользователей, выбрать жертву и сбросить у нее пароль
     app.changePass().goToManagerUsers();
     app.changePass().selectManager(managerId);
     app.changePass().managerResetPassword(managerEmail);
 
-    //на сервере получить письмо со ссылкой
-//    app.james().getAllMail(managerName, "password");
+    //на сервере получить письмо со ссылкой, перейти по ней
 
-    List<MailMessage> mailMessages=app.james().waitForMail(managerName,"password", 60000, boxSize);
+    List<MailMessage> mailMessages=app.james().waitForMail(managerName,"password", 60000);
     MailMessage mailMessage= mailMessages.get(mailMessages.size() - 1);
-
-
     String confirmationLink = findConfirmationLink(mailMessage, managerEmail);
+
+    //ввести и подтвердить новый пароль
     app.changePass().finish(confirmationLink, "newpassword");
+
+    //проверить новый пароль
+    app.changePass().start(managerName, "newpassword");
+
+
+
 
 
 
