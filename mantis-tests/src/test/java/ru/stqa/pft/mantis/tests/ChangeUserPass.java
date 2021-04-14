@@ -5,6 +5,7 @@ import ru.lanwen.verbalregex.VerbalExpression;
 import ru.stqa.pft.mantis.model.MailMessage;
 import ru.stqa.pft.mantis.model.UsersDate;
 import java.util.List;
+import static org.testng.AssertJUnit.assertTrue;
 
 public class ChangeUserPass extends TestBase {
 
@@ -49,14 +50,9 @@ public class ChangeUserPass extends TestBase {
     app.changePass().finish(confirmationLink, "newpassword");
 
     //проверить новый пароль
-    app.changePass().start(managerName, "newpassword");
-
-
-
-
-
-
+    assertTrue(app.changePass().start(managerName, "newpassword"));
   }
+
   private String findConfirmationLink(MailMessage mailMessage, String email) {
  //   MailMessage mailMessage=mailMessages.stream().filter((m)->m.to.equals(email)).findFirst().get();
     VerbalExpression regex= VerbalExpression.regex().find("http://").nonSpace().oneOrMore().build();

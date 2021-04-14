@@ -5,7 +5,6 @@ import org.hibernate.boot.MetadataSources;
 import org.hibernate.boot.registry.StandardServiceRegistry;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.openqa.selenium.By;
-import org.testng.annotations.BeforeMethod;
 import ru.stqa.pft.mantis.model.UsersDate;
 import org.hibernate.SessionFactory;
 
@@ -19,11 +18,12 @@ public class ChangePassHelper extends HelperBase{
     super(app);
   }
 
-  public void start(String userName, String password) {
+  public boolean start(String userName, String password) {
     wd.get(app.getProperty("web.baseUrl")+"/login_page.php");
     type(By.name("username"), userName);
     type(By.name("password"), password);
     click(By.cssSelector("input[value='Login']"));
+    return true;
   }
 
   public void goToManagerUsers() {
