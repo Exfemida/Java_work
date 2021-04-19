@@ -27,6 +27,7 @@ public class ChangePassHelper extends HelperBase{
   }
 
   public void goToManagerUsers() {
+    wd.findElement(By.xpath("//a[@href='/mantisbt-1.2.20/manage_overview_page.php']")).click();
     wd.findElement(By.xpath("//a[@href='/mantisbt-1.2.20/manage_user_page.php']")).click();
   }
 
