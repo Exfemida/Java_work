@@ -8,7 +8,9 @@
  </soapenv:Body>
 </soapenv:Envelope>
 ===================================RESPONSE======================================
-<?xml version="1.0" encoding="UTF-8"?><SOAP-ENV:Envelope SOAP-ENV:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:SOAP-ENC="http://schemas.xmlsoap.org/soap/encoding/" xmlns:tns="http://futureware.biz/mantisconnect"><SOAP-ENV:Body><ns1:mc_projects_get_user_accessibleResponse xmlns:ns1="http://futureware.biz/mantisconnect"><return xsi:type="SOAP-ENC:Array" SOAP-ENC:arrayType="tns:ProjectData[1]"><item xsi:type="tns:ProjectData"><id xsi:type="xsd:integer">1</id><name xsi:type="xsd:string">test1</name><status xmlns="" xsi:type="tns:ObjectRef"><id xsi:type="xsd:integer">10</id><name xsi:type="xsd:string">development</name></status><enabled xsi:type="xsd:boolean">true</enabled><view_state xmlns="" xsi:type="tns:ObjectRef"><id xsi:type="xsd:integer">10</id><name xsi:type="xsd:string">public</name></view_state><access_min xmlns="" xsi:type="tns:ObjectRef"><id xsi:type="xsd:integer">10</id><name xsi:type="xsd:string">viewer</name></access_min><file_path xsi:type="xsd:string"></file_path><description xsi:type="xsd:string">kjgkhgkjgkj</description><subprojects xmlns="" xsi:type="SOAP-ENC:Array" SOAP-ENC:arrayType="tns:ProjectData[0]"></subprojects></item></return></ns1:mc_projects_get_user_accessibleResponse></SOAP-ENV:Body></SOAP-ENV:Envelope>============================= REQUEST ============================================
+<?xml version="1.0" encoding="UTF-8"?>
+<SOAP-ENV:Envelope xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ns1="http://futureware.biz/mantisconnect" xmlns:SOAP-ENC="http://schemas.xmlsoap.org/soap/encoding/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" SOAP-ENV:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"><SOAP-ENV:Body><ns1:mc_projects_get_user_accessibleResponse><return SOAP-ENC:arrayType="ns1:ProjectData[1]" xsi:type="SOAP-ENC:Array"><item xsi:type="ns1:ProjectData"><id xsi:type="xsd:integer">1</id><name xsi:type="xsd:string">test1</name><status xsi:type="ns1:ObjectRef"><id xsi:type="xsd:integer">10</id><name xsi:type="xsd:string">development</name></status><enabled xsi:type="xsd:boolean">true</enabled><view_state xsi:type="ns1:ObjectRef"><id xsi:type="xsd:integer">10</id><name xsi:type="xsd:string">public</name></view_state><access_min xsi:type="ns1:ObjectRef"><id xsi:type="xsd:integer">10</id><name xsi:type="xsd:string">viewer</name></access_min><file_path xsi:type="xsd:string"></file_path><description xsi:type="xsd:string">kjgkhgkjgkj</description><subprojects SOAP-ENC:arrayType="ns1:ProjectData[0]" xsi:type="SOAP-ENC:Array"/></item></return></ns1:mc_projects_get_user_accessibleResponse></SOAP-ENV:Body></SOAP-ENV:Envelope>
+============================= REQUEST ============================================
 <?xml version="1.0" encoding="UTF-8"?><soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
  <soapenv:Body>
   <ns1:mc_project_get_categories soapenv:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" xmlns:ns1="http://futureware.biz/mantisconnect">
@@ -19,7 +21,9 @@
  </soapenv:Body>
 </soapenv:Envelope>
 ===================================RESPONSE======================================
-<?xml version="1.0" encoding="UTF-8"?><SOAP-ENV:Envelope SOAP-ENV:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:SOAP-ENC="http://schemas.xmlsoap.org/soap/encoding/"><SOAP-ENV:Body><ns1:mc_project_get_categoriesResponse xmlns:ns1="http://futureware.biz/mantisconnect"><return xsi:type="SOAP-ENC:Array" SOAP-ENC:arrayType="xsd:string[1]"><item xsi:type="xsd:string">General</item></return></ns1:mc_project_get_categoriesResponse></SOAP-ENV:Body></SOAP-ENV:Envelope>============================= REQUEST ============================================
+<?xml version="1.0" encoding="UTF-8"?>
+<SOAP-ENV:Envelope xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ns1="http://futureware.biz/mantisconnect" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:SOAP-ENC="http://schemas.xmlsoap.org/soap/encoding/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" SOAP-ENV:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"><SOAP-ENV:Body><ns1:mc_project_get_categoriesResponse><return SOAP-ENC:arrayType="xsd:string[1]" xsi:type="SOAP-ENC:Array"><item xsi:type="xsd:string">General</item></return></ns1:mc_project_get_categoriesResponse></SOAP-ENV:Body></SOAP-ENV:Envelope>
+============================= REQUEST ============================================
 <?xml version="1.0" encoding="UTF-8"?><soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
  <soapenv:Body>
   <ns1:mc_issue_add soapenv:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" xmlns:ns1="http://futureware.biz/mantisconnect">
@@ -69,15 +73,12 @@
  </soapenv:Body>
 </soapenv:Envelope>
 ===================================RESPONSE======================================
-<?xml version="1.0" encoding="UTF-8"?><SOAP-ENV:Envelope SOAP-ENV:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
-  xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/"
-  xmlns:xsd="http://www.w3.org/2001/XMLSchema"
-  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xmlns:SOAP-ENC="http://schemas.xmlsoap.org/soap/encoding/">
-<SOAP-ENV:Body><SOAP-ENV:Fault><faultcode xsi:type="xsd:string">Server</faultcode><faultactor xsi:type="xsd:string"></faultactor><faultstring xsi:type="xsd:string">Error Type: ,
-Error Description: Function create_function() is deprecated</faultstring><detail xsi:type="xsd:string"></detail></SOAP-ENV:Fault></SOAP-ENV:Body></SOAP-ENV:Envelope>
+<?xml version="1.0" encoding="UTF-8"?>
+<SOAP-ENV:Envelope xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/"><SOAP-ENV:Body><SOAP-ENV:Fault><faultcode>SOAP-ENV:Server</faultcode><faultstring>Error Type: ,
+Error Description: Function create_function() is deprecated</faultstring></SOAP-ENV:Fault></SOAP-ENV:Body></SOAP-ENV:Envelope>
+
 AxisFault
- faultCode: Server
+ faultCode: {http://schemas.xmlsoap.org/soap/envelope/}Server
  faultSubcode:
  faultString: Error Type: ,
 Error Description: Function create_function() is deprecated
@@ -213,7 +214,9 @@ Error Description: Function create_function() is deprecated
  </soapenv:Body>
 </soapenv:Envelope>
 ===================================RESPONSE======================================
-<?xml version="1.0" encoding="UTF-8"?><SOAP-ENV:Envelope SOAP-ENV:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:SOAP-ENC="http://schemas.xmlsoap.org/soap/encoding/" xmlns:tns="http://futureware.biz/mantisconnect"><SOAP-ENV:Body><ns1:mc_projects_get_user_accessibleResponse xmlns:ns1="http://futureware.biz/mantisconnect"><return xsi:type="SOAP-ENC:Array" SOAP-ENC:arrayType="tns:ProjectData[1]"><item xsi:type="tns:ProjectData"><id xsi:type="xsd:integer">1</id><name xsi:type="xsd:string">test1</name><status xmlns="" xsi:type="tns:ObjectRef"><id xsi:type="xsd:integer">10</id><name xsi:type="xsd:string">development</name></status><enabled xsi:type="xsd:boolean">true</enabled><view_state xmlns="" xsi:type="tns:ObjectRef"><id xsi:type="xsd:integer">10</id><name xsi:type="xsd:string">public</name></view_state><access_min xmlns="" xsi:type="tns:ObjectRef"><id xsi:type="xsd:integer">10</id><name xsi:type="xsd:string">viewer</name></access_min><file_path xsi:type="xsd:string"></file_path><description xsi:type="xsd:string">kjgkhgkjgkj</description><subprojects xmlns="" xsi:type="SOAP-ENC:Array" SOAP-ENC:arrayType="tns:ProjectData[0]"></subprojects></item></return></ns1:mc_projects_get_user_accessibleResponse></SOAP-ENV:Body></SOAP-ENV:Envelope>1
+<?xml version="1.0" encoding="UTF-8"?>
+<SOAP-ENV:Envelope xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ns1="http://futureware.biz/mantisconnect" xmlns:SOAP-ENC="http://schemas.xmlsoap.org/soap/encoding/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" SOAP-ENV:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"><SOAP-ENV:Body><ns1:mc_projects_get_user_accessibleResponse><return SOAP-ENC:arrayType="ns1:ProjectData[1]" xsi:type="SOAP-ENC:Array"><item xsi:type="ns1:ProjectData"><id xsi:type="xsd:integer">1</id><name xsi:type="xsd:string">test1</name><status xsi:type="ns1:ObjectRef"><id xsi:type="xsd:integer">10</id><name xsi:type="xsd:string">development</name></status><enabled xsi:type="xsd:boolean">true</enabled><view_state xsi:type="ns1:ObjectRef"><id xsi:type="xsd:integer">10</id><name xsi:type="xsd:string">public</name></view_state><access_min xsi:type="ns1:ObjectRef"><id xsi:type="xsd:integer">10</id><name xsi:type="xsd:string">viewer</name></access_min><file_path xsi:type="xsd:string"></file_path><description xsi:type="xsd:string">kjgkhgkjgkj</description><subprojects SOAP-ENC:arrayType="ns1:ProjectData[0]" xsi:type="SOAP-ENC:Array"/></item></return></ns1:mc_projects_get_user_accessibleResponse></SOAP-ENV:Body></SOAP-ENV:Envelope>
+1
 test1
 
 ===============================================
