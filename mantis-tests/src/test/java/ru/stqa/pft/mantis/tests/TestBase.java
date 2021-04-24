@@ -9,13 +9,13 @@ import org.testng.annotations.BeforeSuite;
 import ru.stqa.pft.mantis.appmanager.ApplicationManager;
 
 import javax.xml.rpc.ServiceException;
-import java.io.File;
+import java.io.IOException;
 import java.net.MalformedURLException;
 import java.rmi.RemoteException;
 
 public class TestBase {
 
-  Logger logger= LoggerFactory.getLogger(TestBase.class);
+  Logger logger = LoggerFactory.getLogger(TestBase.class);
   protected static ApplicationManager app = new ApplicationManager(System.getProperty("browser", BrowserType.EDGE));
 
   @BeforeSuite(alwaysRun = true)
@@ -30,11 +30,11 @@ public class TestBase {
     app.stop();
   }
 
-  public void skipIfNotFixed(int issueId) throws RemoteException, ServiceException, MalformedURLException {
+  public void skipIfNotFixed(int issueId) throws IOException, ServiceException {
     if (app.bug().isIssueOpen(issueId)) {
       throw new SkipException("Ignored because of issue " + issueId);
     }
   }
 
-
 }
+

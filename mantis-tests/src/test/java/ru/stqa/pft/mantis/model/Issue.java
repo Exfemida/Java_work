@@ -5,6 +5,16 @@ public class Issue {
   private String summary;
   private String description;
   private Project project;
+  private String state_name;
+
+  public String getStatus() {
+    return state_name;
+  }
+
+  public Issue setStatus(String state_name) {
+    this.state_name = state_name;
+    return this;
+  }
 
   public int getId() {
     return id;
