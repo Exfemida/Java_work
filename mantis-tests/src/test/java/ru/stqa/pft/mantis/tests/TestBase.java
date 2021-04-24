@@ -8,7 +8,10 @@ import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeSuite;
 import ru.stqa.pft.mantis.appmanager.ApplicationManager;
 
+import javax.xml.rpc.ServiceException;
 import java.io.File;
+import java.net.MalformedURLException;
+import java.rmi.RemoteException;
 
 public class TestBase {
 
@@ -27,14 +30,8 @@ public class TestBase {
     app.stop();
   }
 
-  public boolean isIssueOpen(int issueId) {
-    boolean result = false; //по умолчанию не статус не close
-    //которая должна через Remote API получать из баг-трекера информацию о баг-репорте с заданным идентификатором, и возвращать значение false или true в зависимости от того, помечен он как исправленный или нет
-  return result;
-  }
-
-  public void skipIfNotFixed(int issueId) {
-    if (isIssueOpen(issueId)) {
+  public void skipIfNotFixed(int issueId) throws RemoteException, ServiceException, MalformedURLException {
+    if (app.bug().isIssueOpen(issueId)) {
       throw new SkipException("Ignored because of issue " + issueId);
     }
   }
