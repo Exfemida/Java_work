@@ -49,19 +49,21 @@ public class BugHelper {
       if (createdIssueData.getStatus().getName().equals("closed")) {
         result = false;
       }
-    //если учет багов ведется в Bugify
+      //если учет багов ведется в Bugify
     } else if (app.getProperty("bugtracker").equals("Bugify")) {
-      String json = getExecutor().execute(Request.Get("https://bugify.stqa.ru/api/issues/" + issueId + ".json"))
+      //  String json = getExecutor().execute(Request.Get("https://bugify.stqa.ru/api/issues/" + issueId + ".json"))
+      String json = getExecutor().execute(Request.Get(app.getProperty("Request.bugifyUrl") + issueId + ".json"))
               .returnContent().asString();
       JsonElement parsed = new JsonParser().parse(json);
       JsonElement issue = parsed.getAsJsonObject().get("issues");
-      Set<Issue> newIssue = new Gson().fromJson(issue, new TypeToken<Set<Issue>>() {}.getType());
+      Set<Issue> newIssue = new Gson().fromJson(issue, new TypeToken<Set<Issue>>() {
+      }.getType());
       String status = newIssue.stream().map((p) -> (p).getStatus()).findFirst().get().toString();
       if (status.equals("Deleted") | status.equals("Closed")) {
         result = false;
       }
     } else System.out.println("bugtracker not selected");
-    
+
     return result;
   }
 
