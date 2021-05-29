@@ -20,6 +20,6 @@ public class Equation_Tests {
   @Test
   public void test2() {
     Equation e=new Equation(1,5,6);
-    Assert.assertEquals(e.rootNumber(),29);
+    Assert.assertEquals(e.rootNumber(),2);
   }
 }
