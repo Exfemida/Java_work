@@ -37,7 +37,7 @@ public class GroupModificationTests extends TestBase {
     //без сокращения статических методов
     MatcherAssert.assertThat(after, CoreMatchers.equalTo(before.without(modifiedGroup).withAdded(group)));
 
-//    verifyGroupListInUA();
+    verifyGroupListInUA();
   }
 
 
