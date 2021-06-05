@@ -21,7 +21,7 @@ import java.util.stream.Collectors;
 public class TestBase {
 
   Logger logger= LoggerFactory.getLogger(TestBase.class);
-  protected static ApplicationManager app = new ApplicationManager(System.getProperty("browser", BrowserType.FIREFOX));
+  protected static ApplicationManager app = new ApplicationManager(System.getProperty("browser", BrowserType.CHROME));
 
   @BeforeSuite(alwaysRun = true)
   public void setUp() throws Exception {
