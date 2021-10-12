@@ -1,0 +1,21 @@
+plugins {
+    id 'java'
+}
+
+group 'ru.stqa'
+version '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+
+    implementation 'org.seleniumhq.selenium:selenium-java:4.0.0-rc-3'
+    implementation 'org.testng:testng:7.4.0'
+    implementation 'junit:junit:4.12'
+}
+
+test {
+    useTestNG()
+}
