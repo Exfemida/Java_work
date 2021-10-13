@@ -6,9 +6,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.Test;
+import org.testng.annotations.*;
 
 import static org.openqa.selenium.support.ui.ExpectedConditions.titleIs;
 
@@ -16,7 +14,7 @@ public class MyFirstTest {
   private WebDriver driver;
   private WebDriverWait wait;
 
-  @BeforeMethod
+  @BeforeTest
   public void start(){
     driver=new ChromeDriver();
     wait=new WebDriverWait(driver,10);
@@ -27,10 +25,11 @@ public class MyFirstTest {
     driver.get("http://www.google.com");
     driver.findElement(By.name("q")).sendKeys("webdriver");
     driver.findElement(By.name("btnK")).click();
-    wait.until(titleIs("webdriver - РџРѕРёСЃРє РІ Google"));
+    wait.until(titleIs("webdriver - Поиск в Google"));
   }
 
-  @AfterMethod
+  @AfterTest
+
   public  void stop(){
     driver.quit();
     driver=null;
