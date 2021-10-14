@@ -30,7 +30,6 @@ public class LoginTest {
     driver.findElement(By.name("login")).click();
     wait.until(titleIs("My Store"));
 
-
     driver.findElement(By.linkText("Users_")).click();
     wait.until(titleIs("Users | My Store"));
   }
